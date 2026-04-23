@@ -4,7 +4,7 @@ featureImageCaption:
 layout: layouts/about.html
 metaDesc: Learn about Codeboxx, a Wrexham supplier of thermal printheads, transfer ribbons, TTO parts, and export support.
 permalink: /about/
-title: Why production teams rely on Codeboxx
+title: Production teams rely on Codeboxx
 
 lede: |
   <p class="alt-lede">When production lines depend on consistent, reliable coding, delays and uncertainty aren’t acceptable. Codeboxx is built to deliver what you need, quickly and reliably, when it matters most.</p>
@@ -34,4 +34,4 @@ Production needs change. We make it easy to order what you need, when you need i
 
 ---
 
-Codeboxx isn’t just a supplier. It’s a partner focused on keeping your production line running—consistently, reliably, and without interruption.
+Codeboxx isn’t just a supplier. We’re a partner focused on keeping your production line running—consistently, reliably, and without interruption.

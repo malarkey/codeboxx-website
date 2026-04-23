@@ -1,6 +1,9 @@
 {% for item in productListItems %}
 <article class="item-product" data-product-card data-product-category="{{ item.data.category | slug }}" data-product-manufacturer="{{ item.data.manufacturer | slug }}"{% if item.data.partNumber %} aria-checked="false" data-product-selected="false" role="checkbox" tabindex="0"{% endif %}{% if productDefaultManufacturer and item.data.manufacturer != productDefaultManufacturer %} hidden{% endif %}>
 
+{% if item.data.img %}
+<img alt="{{ item.data.title }}" loading="lazy" src="{{ item.data.img }}">
+{% else %}
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 665">
 
 <g fill="none" fill-rule="evenodd" class="box-inactive">
@@ -32,6 +35,7 @@
 </g>
 </g>
 </svg>
+{% endif %}
 
 <!-- {% if item.data.category %}<small>{{ item.data.category }}</small>{% endif %} -->
 

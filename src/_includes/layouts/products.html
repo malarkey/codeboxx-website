@@ -18,7 +18,7 @@
 <ul class="alt-inline" data-product-nav>
 {% for manufacturer in productManufacturers %}
 {% set manufacturerFilter = manufacturer | slug %}
-<li><a href="#{{ manufacturerFilter }}"{% if manufacturer == productDefaultManufacturer %} aria-current="true"{% endif %} data-product-filter="{{ manufacturerFilter }}">{{ manufacturer }}</a></li>
+<li><a href="#manufacturer/{{ manufacturerFilter }}"{% if manufacturer == productDefaultManufacturer %} aria-current="true"{% endif %} data-product-filter="{{ manufacturerFilter }}">{{ manufacturer }}</a></li>
 {% endfor %}
 </ul>
 </div><!-- one -->
@@ -27,7 +27,7 @@
 <ul class="alt-inline" data-product-category-nav>
 {% for category in productCategories %}
 {% set categoryFilter = category | slug %}
-<li><a href="#{{ productDefaultManufacturer | slug }}/{{ categoryFilter }}" data-product-category-filter="{{ categoryFilter }}">{{ category }}</a></li>
+<li><a href="#category/{{ categoryFilter }}" data-product-category-filter="{{ categoryFilter }}">{{ category }}</a></li>
 {% endfor %}
 </ul>
 </div><!-- two -->
@@ -63,38 +63,38 @@
 <div>
 <h3>Contact us</h3>
 
-<form action="/thanks/" class="product-form" data-netlify="true" method="POST" name="product-form" netlify-honeypot="bot-field">
+<form action="/thanks/" aria-disabled="true" class="product-form" data-has-product-selection="false" data-netlify="true" method="POST" name="product-form" netlify-honeypot="bot-field">
 <input type="hidden" name="form-name" value="product-form">
 <p hidden><label>Don&#8217;t fill this out: <input name="bot-field"></label></p>
 <div data-product-hidden-fields></div>
 
 <div>
 <label for="contact-name">Name</label>
-<input type="text" name="contact-name" id="contact-name" required>
+<input data-product-form-control disabled type="text" name="contact-name" id="contact-name" required>
 </div>
 
 <div>
 <label for="contact-company">Company</label>
-<input type="text" name="contact-company" id="contact-company">
+<input data-product-form-control disabled type="text" name="contact-company" id="contact-company">
 </div>
 
 <div>
 <label for="contact-email">Email</label>
-<input type="email" name="contact-email" id="contact-email" required>
+<input data-product-form-control disabled type="email" name="contact-email" id="contact-email" required>
 </div>
 
 <div>
 <label for="contact-tel">Telephone</label>
-<input type="tel" name="contact-tel" id="contact-tel">
+<input data-product-form-control disabled type="tel" name="contact-tel" id="contact-tel">
 </div>
 
 <div>
 <label for="contact-message">Message</label>
-<textarea name="contact-message" id="contact-message"></textarea>
+<textarea data-product-form-control disabled name="contact-message" id="contact-message"></textarea>
 </div>
 
 <div data-align-h="center">
-<button class="btn">Send enquiry</button>
+<button class="btn" data-product-form-control disabled>Send enquiry</button>
 </div><!-- align -->
 
 </form>
@@ -102,6 +102,22 @@
 </div><!-- two -->
 
 </div><!-- layout -->
+
+
+
+<div class="layout" data-layout="brussels">
+
+<div>
+<h2>FAQs</h2>
+
+{% set faqItems = collections.faqItems | filterFaqsByCategory("Ordering") %}
+{% include "partials/faq-all-categories.html" %}
+
+</div><!-- one -->
+
+</div><!-- layout -->
+
+
 
 <script>
 (() => {
@@ -126,6 +142,7 @@ const manufacturerIds = manufacturerFilters
 .filter(Boolean);
 const message = form ? form.querySelector("#contact-message") : null;
 const productFields = form ? form.querySelector("[data-product-hidden-fields]") : null;
+const productFormControls = form ? Array.from(form.querySelectorAll("[data-product-form-control]")) : [];
 const productSelections = Array.from(browser.querySelectorAll("[data-product-select]"));
 const productMessageStart = "I am interested in the following products:";
 
@@ -154,6 +171,22 @@ return productSelections
 .filter((selection) => selection.checked)
 .map((selection) => selection.getAttribute("data-product-part-number"))
 .filter(Boolean);
+}
+
+function updateProductFormState() {
+if (!form) {
+return;
+}
+
+const selectedPartNumbers = getSelectedPartNumbers();
+const hasSelection = selectedPartNumbers.length > 0;
+
+form.setAttribute("aria-disabled", hasSelection ? "false" : "true");
+form.setAttribute("data-has-product-selection", hasSelection ? "true" : "false");
+
+productFormControls.forEach((control) => {
+control.disabled = !hasSelection;
+});
 }
 
 function updateProductEnquiry() {
@@ -193,42 +226,49 @@ card.setAttribute("data-product-selected", selection.checked ? "true" : "false")
 
 function updateProducts() {
 updateProductSelectionStates();
+updateProductFormState();
 updateProductEnquiry();
 }
 
 function getProductStateFromUrl() {
 const hash = window.location.hash.replace("#", "");
-const [manufacturer, category] = hash.split("/");
+const [filterType, filterValue] = hash.split("/");
 
+if (filterType === "category" && categoryIds.includes(filterValue)) {
 return {
-category: categoryIds.includes(category) ? category : "",
-manufacturer: manufacturerIds.includes(manufacturer) ? manufacturer : productDefaultManufacturer
+category: filterValue,
+manufacturer: ""
 };
 }
 
-function getProductUrl(manufacturer, category) {
-return category ? `#${manufacturer}/${category}` : `#${manufacturer}`;
+if (filterType === "manufacturer" && manufacturerIds.includes(filterValue)) {
+return {
+category: "",
+manufacturer: filterValue
+};
 }
 
-function updateFilterHrefs() {
-manufacturerFilters.forEach((link) => {
-const manufacturer = link.getAttribute("data-product-filter") || productDefaultManufacturer;
-link.href = getProductUrl(manufacturer, activeCategory);
-});
+return {
+category: "",
+manufacturer: productDefaultManufacturer
+};
+}
 
-categoryFilters.forEach((link) => {
-const category = link.getAttribute("data-product-category-filter") || "";
-link.href = getProductUrl(activeManufacturer, category);
-});
+function getProductUrl(state) {
+if (state.category) {
+return `#category/${state.category}`;
+}
+
+return `#manufacturer/${state.manufacturer || productDefaultManufacturer}`;
 }
 
 function render(state) {
 activeCategory = state.category || "";
-activeManufacturer = state.manufacturer || productDefaultManufacturer;
+activeManufacturer = state.manufacturer || "";
 
 cards.forEach((card) => {
 const matchesCategory = !activeCategory || card.getAttribute("data-product-category") === activeCategory;
-const matchesManufacturer = card.getAttribute("data-product-manufacturer") === activeManufacturer;
+const matchesManufacturer = !activeManufacturer || card.getAttribute("data-product-manufacturer") === activeManufacturer;
 
 card.hidden = !matchesCategory || !matchesManufacturer;
 });
@@ -248,12 +288,10 @@ link.setAttribute("aria-current", "true");
 link.removeAttribute("aria-current");
 }
 });
-
-updateFilterHrefs();
 }
 
 function updateFilterUrl(state) {
-const nextHash = getProductUrl(state.manufacturer, state.category);
+const nextHash = getProductUrl(state);
 
 if (window.location.hash === nextHash) {
 return;
@@ -266,7 +304,7 @@ manufacturerFilters.forEach((link) => {
 link.addEventListener("click", (event) => {
 event.preventDefault();
 const manufacturer = link.getAttribute("data-product-filter") || productDefaultManufacturer;
-const state = { category: activeCategory, manufacturer };
+const state = { category: "", manufacturer };
 render(state);
 updateFilterUrl(state);
 });
@@ -276,7 +314,7 @@ categoryFilters.forEach((link) => {
 link.addEventListener("click", (event) => {
 event.preventDefault();
 const category = link.getAttribute("data-product-category-filter") || "";
-const state = { category, manufacturer: activeManufacturer };
+const state = { category, manufacturer: "" };
 render(state);
 updateFilterUrl(state);
 });

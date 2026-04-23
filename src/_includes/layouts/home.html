@@ -79,6 +79,7 @@
 <div>
 <h2>FAQs</h2>
 
+{% set faqItems = collections.faqItems | filterFaqsByCategory("General") %}
 {% include "partials/faq-all-categories.html" %}
 
 </div><!-- one -->

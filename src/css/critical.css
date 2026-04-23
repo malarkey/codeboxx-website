@@ -533,6 +533,16 @@ font-family: var(--font-family-default);
 margin: 0;
 padding: 0; }
 
+form > div {
+margin-block-end: var(--spacing-s); }
+
+.product-form {
+opacity: .25;
+transition: opacity var(--animate-duration-faster) var(--animate-function); }
+
+.product-form[data-has-product-selection="true"] {
+opacity: 1; }
+
 /* Label styles */
 label {
 display: inline-block;
@@ -748,6 +758,20 @@ color: var(--color-border); }
 nav li {
 margin: 0 var(--spacing-s); }
 
+[role="banner"] nav ul {
+align-items: stretch;
+justify-content: space-between; }
+
+[role="banner"] nav li {
+flex: 0 0 calc(50% - (var(--spacing-s) / 2));
+margin: 0 0 var(--spacing-s);
+text-align: center; }
+
+[role="banner"] nav a:not(.btn),
+[role="banner"] nav a:not(.btn):hover,
+[role="banner"] nav a:not(.btn):visited {
+margin-inline: auto; }
+
 nav li:before {
 content: "";
 display: none; }
@@ -768,15 +792,45 @@ position: relative;
 text-align: center;
 text-decoration: none; }
 
+.footer-nav {
+align-items: stretch;
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+margin: var(--spacing-r) 0; }
+
+.footer-nav li {
+flex: 0 0 calc(50% - (var(--spacing-s) / 2));
+margin: 0 0 var(--spacing-s);
+text-align: center; }
+
+.footer-nav li:before {
+content: "";
+display: none; }
+
+.footer-nav a,
+.footer-nav a:hover,
+.footer-nav a:focus {
+text-decoration: none; }
+
+.footer-nav a,
+.footer-nav a:visited,
+.footer-nav a:hover {
+color: var(--color-text-link);
+font-family: var(--font-family-default);
+font-size: var(--font-size-s);
+text-align: center;
+text-decoration: none; }
+
 
 
 /* ============= MANUFACTURERS COMPONENT ========== */
 
 .alt-manufacturers {
 align-items: start;
-display: flex;
+display: grid;
 gap: var(--spacing-r);
-justify-content: center;
+grid-template-columns: 1fr 1fr;
 margin-block: var(--spacing-r); }
 
 .alt-manufacturers span {
@@ -785,7 +839,7 @@ display: block; }
 .alt-manufacturers a {
 color: var(--color-text-default);
 display: block;
-font-size: var(--font-size-r);
+font-size: var(--font-size-s);
 line-height: var(--lineheight-s);
 text-align: center;
 text-decoration: none; }
@@ -852,6 +906,12 @@ opacity: 1; }
 position: absolute;
 right: 1rem;
 top: 1rem; }
+
+.item-product img {
+display: block;
+inline-size: 300px;
+margin-block-end: var(--spacing-r);
+margin-inline: auto; }
 
 .item-product svg {
 display: block;
@@ -944,6 +1004,9 @@ margin-block: var(--spacing-m); }
 [role="contentinfo"] {
 margin-block: var(--spacing-l); }
 
+[role="contentinfo"] small {
+text-align: center; }
+
 #footer-logo {
 display: block;
 margin-block-end: var(--spacing-s); }
@@ -954,6 +1017,27 @@ margin-inline: auto;
 max-inline-size: 120px;
 scale: 1;
 transition: scale var(--animate-duration-faster) var(--animate-function); }
+
+#footer-logomark {
+translate: 0 0; }
+
+#footer-logo a:focus-visible #footer-logomark,
+#footer-logo a:hover #footer-logomark {
+animation: footer-logomark-bounce 1s var(--animate-function) infinite; }
+
+@keyframes footer-logomark-bounce {
+0%,
+100% {
+translate: 0 0; }
+25% {
+translate: 0 -10px; }
+75% {
+translate: 0 10px; }}
+
+@media (prefers-reduced-motion: reduce) {
+#footer-logo a:focus-visible #footer-logomark,
+#footer-logo a:hover #footer-logomark {
+animation: none; }}
 
 /* ==========================================================================
 FLEX LAYOUT
@@ -1005,9 +1089,6 @@ textarea {
 min-block-size: 12rem;
 resize: vertical;
 transition: min-height .5s ease-in-out; }
-
-#footer-logo a {
-margin-inline: unset; }
 }
 
 /*
@@ -1028,6 +1109,27 @@ body { padding-inline: var(--spacing-l); }
 
 #banner-logo {
 margin: 0; }
+
+[role="banner"] nav ul {
+align-items: center;
+justify-content: center; }
+
+[role="banner"] nav li {
+flex: 0 1 auto;
+margin: 0;
+text-align: unset; }
+
+[role="contentinfo"] .footer-nav {
+display: unset;
+align-items: unset;
+justify-content: unset; }
+
+[role="contentinfo"] .footer-nav li {
+display: inline-block;
+margin-inline-end: var(--spacing-r); }
+
+#footer-logo a {
+margin-inline: unset; }
 
 nav li {
 margin: 0; }
@@ -1064,6 +1166,12 @@ background-color: var(--color-accent); }
 
 nav:has(a:hover) a:not(.btn):not(:hover) {
 opacity: .5; }
+
+[role="contentinfo"] small {
+text-align: left; }
+
+.alt-manufacturers {
+display: flex; }
 
 [data-layout="flex"] {
 display: flex;

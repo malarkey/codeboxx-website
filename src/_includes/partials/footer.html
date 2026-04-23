@@ -3,7 +3,7 @@
 <div class="layout" data-layout="athens">
 
 <div>
-<ul class="alt-inline">
+<ul class="footer-nav">
 {% for item in footer_navigation.items %}
 <li><a href="{{ item.url }}"{{ helpers.getLinkActiveState(item.url, page.url) | safe }}>{{ item.text }}</a></li>
 {% endfor %}
