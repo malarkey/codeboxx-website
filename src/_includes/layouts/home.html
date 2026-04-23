@@ -1,0 +1,94 @@
+{% set assetHash = global.random() %}
+
+<!DOCTYPE html>
+<html lang="en-GB">
+
+{% include "partials/head.html" %}
+
+<body id="{{ site.siteID }}">
+
+{% include "partials/header.html" %}
+
+<div class="layout" data-layout="vilnius">
+
+<div>
+{% include "partials/img-combined.svg" %}
+
+<div class="banner-switcher" aria-label="Painting switcher">
+<button aria-controls="img-van-gogh-portrait" aria-label="Show painting 1" aria-pressed="true" data-painting-target="img-van-gogh-portrait" type="button">1</button>
+<button aria-controls="img-munch-scream" aria-label="Show painting 2" aria-pressed="false" data-painting-target="img-munch-scream" type="button">2</button>
+<button aria-controls="img-davinci-mona-lisa" aria-label="Show painting 3" aria-pressed="false" data-painting-target="img-davinci-mona-lisa" type="button">3</button>
+</div><!-- banner-switcher -->
+
+</div><!-- one -->
+
+<div>
+<h1>{{ title }}</h1>
+
+{% if lede %}{{ lede | markdown | safe }}{% endif %}
+
+{% if intro %}{{ intro | markdown | safe }}{% endif %}
+
+<div class="btn-group">
+<a href="/contact" class="btn" data-variant="alt">Get in touch</a>
+<a href="/about" class="btn">Why us?</a>
+</div><!-- btn-group -->
+
+</div><!-- two -->
+
+</div><!-- layout -->
+
+
+
+<hr data-function="spacer">
+
+
+
+{% include "partials/manufacturers.html" %}
+
+
+
+<hr data-function="spacer">
+
+
+
+<div class="layout" data-layout="vienna">
+
+<div>
+{% if block1 %}{{ block1 | markdown | safe }}{% endif %}
+</div><!-- one -->
+
+<div data-bordered="inline-start">
+{% if block2 %}{{ block1 | markdown | safe }}{% endif %}
+</div><!-- two -->
+
+<div data-bordered="inline-start">
+{% if block3 %}{{ block1 | markdown | safe }}{% endif %}
+</div><!-- three -->
+
+</div><!-- layout -->
+
+
+
+<hr data-function="spacer">
+
+
+
+<div class="layout" data-layout="brussels">
+
+<div>
+<h2>FAQs</h2>
+
+{% include "partials/faq-all-categories.html" %}
+
+</div><!-- one -->
+
+</div><!-- layout -->
+
+
+
+{% include "partials/footer.html" %}
+<script src="{{ site.assetPath }}/js/scripts.js"></script>
+</body>
+
+</html>

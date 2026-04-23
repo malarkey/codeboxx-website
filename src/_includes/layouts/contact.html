@@ -1,0 +1,110 @@
+{% set assetHash = global.random() %}
+
+<!DOCTYPE html>
+<html lang="en-GB">
+
+{% include "partials/head.html" %}
+
+<body id="{{ site.siteID }}">
+
+{% include "partials/header.html" %}
+
+<div class="layout" data-layout="tirana">
+
+<div>
+<h1>{{ title }}</h1>
+{% if lede %}{{ lede | markdown | safe }}{% endif %}
+
+<form action="/thanks/" class="contact-form" data-netlify="true" method="POST" name="contact-form" netlify-honeypot="bot-field">
+<input type="hidden" name="form-name" value="contact-form">
+<p hidden><label>Don&#8217;t fill this out: <input name="bot-field"></label></p>
+
+<div data-layout="flex">
+
+<div>
+<label for="contact-name">Name</label>
+<input type="text" name="contact-name" id="contact-name" required>
+</div><!-- one -->
+
+<div>
+<label for="contact-company">Company <span>Optional</span></label>
+<input type="text" name="contact-company" id="contact-company">
+</div><!-- two -->
+
+</div><!-- flex -->
+
+<div data-layout="flex">
+
+<div>
+<label for="contact-email">Email</label>
+<input type="email" name="contact-email" id="contact-email" required>
+</div><!-- one -->
+
+<div>
+<label for="contact-tel">Telephone</label>
+<input type="tel" name="contact-tel" id="contact-tel">
+</div><!-- two -->
+
+</div><!-- flex -->
+
+<div>
+<label for="contact-message">Message</label>
+<textarea name="contact-message" id="contact-message"></textarea>
+</div>
+
+<div data-align-h="right">
+<button class="btn">Send enquiry</button>
+</div><!-- align -->
+
+</form>
+</div><!-- one -->
+
+<div>
+{% if featureImage %}
+<figure>
+<img src="{{ featureImage }}" alt="{{ featureImageCaption }}" />
+{% if featureImageCaption %}
+<figcaption>{{ featureImageCaption }}</figcaption>
+{% endif %}
+</figure>
+{% endif %}
+</div><!-- two -->
+
+</div><!-- layout -->
+
+
+
+<hr data-function="spacer">
+
+
+
+<div class="layout" data-layout="tirana">
+
+<div>
+<p>{% if site.name %}{{ site.name }}<br>{% endif %}
+{% if site.address1 %}{{ site.address1 }}<br>{% endif %}
+{% if site.address2 %}{{ site.address2 }}<br>{% endif %}
+{% if site.townCity %}{{ site.townCity }}<br>{% endif %}
+{% if site.countyState %}{{ site.countyState }}<br>{% endif %}
+{% if site.postcode %}{{ site.postcode }}<br>{% endif %}
+{% if site.country %}{{ site.country }}{% endif %}</p>
+</div><!-- one -->
+
+<div>
+{% if site.telephone %}
+<p><a href="tel:{{ site.telephoneHref or site.telephone }}">{{ site.telephone }}</a></p>
+{% endif %}
+{% if site.email %}
+<p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+{% endif %}
+</div><!-- two -->
+
+</div><!-- layout -->
+
+
+{% include "partials/footer.html" %}
+
+<script src="{{ site.assetPath }}/js/scripts.js"></script>
+</body>
+
+</html>

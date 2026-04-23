@@ -1,0 +1,22 @@
+<footer role="contentinfo">
+
+<div class="layout" data-layout="athens">
+
+<div>
+<ul class="alt-inline">
+{% for item in footer_navigation.items %}
+<li><a href="{{ item.url }}"{{ helpers.getLinkActiveState(item.url, page.url) | safe }}>{{ item.text }}</a></li>
+{% endfor %}
+</ul>
+
+<small>&#169; {{ global.currentYear() }}&#8211;now. {{ site.copyrightOwner or site.name }}. All Rights Reserved</small>
+<small class="alt-credit" ><a href="https://stuffandnonsense.co.uk">Website design by Stuff &#38; Nonsense</a></small>
+</div><!-- one -->
+
+<div id="footer-logo">
+<a href="#{{ site.siteID }}" title="Top">{% include "partials/logo-footer.svg" %}<span data-visibility="hidden">{{ site.name }}</span></a>
+</div><!-- footer-logo -->
+
+</div><!-- layout -->
+
+</footer>

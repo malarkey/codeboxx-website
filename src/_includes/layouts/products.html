@@ -1,0 +1,329 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<div class="layout" data-layout="london">
+
+<div>
+<h1 data-visibility="hidden">{{ title }}</h1>
+
+{% set productDefaultManufacturer = "Markem Imaje" %}
+{% set productListItems = collections.productItems %}
+{% set productCategories = productListItems | getProductCategories %}
+{% set productManufacturers = productListItems | getProductManufacturers %}
+
+<div data-layout="flex">
+
+<div>
+<ul class="alt-inline" data-product-nav>
+{% for manufacturer in productManufacturers %}
+{% set manufacturerFilter = manufacturer | slug %}
+<li><a href="#{{ manufacturerFilter }}"{% if manufacturer == productDefaultManufacturer %} aria-current="true"{% endif %} data-product-filter="{{ manufacturerFilter }}">{{ manufacturer }}</a></li>
+{% endfor %}
+</ul>
+</div><!-- one -->
+
+<div>
+<ul class="alt-inline" data-product-category-nav>
+{% for category in productCategories %}
+{% set categoryFilter = category | slug %}
+<li><a href="#{{ productDefaultManufacturer | slug }}/{{ categoryFilter }}" data-product-category-filter="{{ categoryFilter }}">{{ category }}</a></li>
+{% endfor %}
+</ul>
+</div><!-- two -->
+
+</div>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 665" data-visibility="hidden" aria-hidden="true" focusable="false">
+<defs>
+<linearGradient id="box-outer-grad" x1="69.263%" x2="30.737%" y1="50%" y2="76.795%">
+<stop offset="0%" stop-color="#191919"/>
+<stop offset="100%" stop-color="#141414"/>
+</linearGradient>
+
+<radialGradient id="box-inner-grad" cx="50%" cy="100%" r="72.856%" fx="50%" fy="100%" gradientTransform="matrix(0 1 -.62732 0 1.127 .5)">
+<stop offset="0%" stop-color="#2eb6b7"/>
+<stop offset="100%" stop-color="#0c0c0c"/>
+</radialGradient>
+
+<linearGradient id="box-outer-shadow" x1="96.245%" x2="96.245%" y1="0%" y2="97.742%">
+<stop offset="0%" stop-color="#141414"/>
+<stop offset="100%" stop-color="#141414" stop-opacity="0"/>
+</linearGradient>
+</defs>
+</svg>
+
+<div class="layout" data-layout="valletta" id="products" data-products-browser>
+{% include "partials/product-list.html" %}
+</div><!-- layout -->
+
+</div><!-- one -->
+
+
+<div>
+<h3>Contact us</h3>
+
+<form action="/thanks/" class="product-form" data-netlify="true" method="POST" name="product-form" netlify-honeypot="bot-field">
+<input type="hidden" name="form-name" value="product-form">
+<p hidden><label>Don&#8217;t fill this out: <input name="bot-field"></label></p>
+<div data-product-hidden-fields></div>
+
+<div>
+<label for="contact-name">Name</label>
+<input type="text" name="contact-name" id="contact-name" required>
+</div>
+
+<div>
+<label for="contact-company">Company</label>
+<input type="text" name="contact-company" id="contact-company">
+</div>
+
+<div>
+<label for="contact-email">Email</label>
+<input type="email" name="contact-email" id="contact-email" required>
+</div>
+
+<div>
+<label for="contact-tel">Telephone</label>
+<input type="tel" name="contact-tel" id="contact-tel">
+</div>
+
+<div>
+<label for="contact-message">Message</label>
+<textarea name="contact-message" id="contact-message"></textarea>
+</div>
+
+<div data-align-h="center">
+<button class="btn">Send enquiry</button>
+</div><!-- align -->
+
+</form>
+
+</div><!-- two -->
+
+</div><!-- layout -->
+
+<script>
+(() => {
+const browser = document.querySelector("[data-products-browser]");
+const categoryFilters = Array.from(document.querySelectorAll("[data-product-category-filter]"));
+const form = document.querySelector(".product-form");
+const manufacturerFilters = Array.from(document.querySelectorAll("[data-product-filter]"));
+const productDefaultManufacturer = "markem-imaje";
+
+if (!browser || !manufacturerFilters.length) {
+return;
+}
+
+let activeCategory = "";
+let activeManufacturer = productDefaultManufacturer;
+const cards = Array.from(browser.querySelectorAll("[data-product-card]"));
+const categoryIds = categoryFilters
+.map((link) => link.getAttribute("data-product-category-filter"))
+.filter(Boolean);
+const manufacturerIds = manufacturerFilters
+.map((link) => link.getAttribute("data-product-filter"))
+.filter(Boolean);
+const message = form ? form.querySelector("#contact-message") : null;
+const productFields = form ? form.querySelector("[data-product-hidden-fields]") : null;
+const productSelections = Array.from(browser.querySelectorAll("[data-product-select]"));
+const productMessageStart = "I am interested in the following products:";
+
+if (!cards.length) {
+return;
+}
+
+function getCustomMessage() {
+if (!message) {
+return "";
+}
+
+const startIndex = message.value.indexOf(productMessageStart);
+
+if (startIndex === -1) {
+return message.value.trim();
+}
+
+const beforeProductMessage = message.value.slice(0, startIndex).trim();
+
+return beforeProductMessage;
+}
+
+function getSelectedPartNumbers() {
+return productSelections
+.filter((selection) => selection.checked)
+.map((selection) => selection.getAttribute("data-product-part-number"))
+.filter(Boolean);
+}
+
+function updateProductEnquiry() {
+if (!message || !productFields) {
+return;
+}
+
+const selectedPartNumbers = getSelectedPartNumbers();
+
+productFields.replaceChildren();
+
+selectedPartNumbers.forEach((partNumber) => {
+const field = document.createElement("input");
+field.name = "product-part-number";
+field.type = "hidden";
+field.value = partNumber;
+productFields.append(field);
+});
+
+const customMessage = getCustomMessage();
+const productMessage = selectedPartNumbers.length ? `${productMessageStart}\n\n${selectedPartNumbers.map((partNumber) => `- ${partNumber}`).join("\n")}` : "";
+message.value = [customMessage, productMessage].filter(Boolean).join("\n\n");
+}
+
+function updateProductSelectionStates() {
+productSelections.forEach((selection) => {
+const card = selection.closest("[data-product-card]");
+
+if (!card) {
+return;
+}
+
+card.setAttribute("aria-checked", selection.checked ? "true" : "false");
+card.setAttribute("data-product-selected", selection.checked ? "true" : "false");
+});
+}
+
+function updateProducts() {
+updateProductSelectionStates();
+updateProductEnquiry();
+}
+
+function getProductStateFromUrl() {
+const hash = window.location.hash.replace("#", "");
+const [manufacturer, category] = hash.split("/");
+
+return {
+category: categoryIds.includes(category) ? category : "",
+manufacturer: manufacturerIds.includes(manufacturer) ? manufacturer : productDefaultManufacturer
+};
+}
+
+function getProductUrl(manufacturer, category) {
+return category ? `#${manufacturer}/${category}` : `#${manufacturer}`;
+}
+
+function updateFilterHrefs() {
+manufacturerFilters.forEach((link) => {
+const manufacturer = link.getAttribute("data-product-filter") || productDefaultManufacturer;
+link.href = getProductUrl(manufacturer, activeCategory);
+});
+
+categoryFilters.forEach((link) => {
+const category = link.getAttribute("data-product-category-filter") || "";
+link.href = getProductUrl(activeManufacturer, category);
+});
+}
+
+function render(state) {
+activeCategory = state.category || "";
+activeManufacturer = state.manufacturer || productDefaultManufacturer;
+
+cards.forEach((card) => {
+const matchesCategory = !activeCategory || card.getAttribute("data-product-category") === activeCategory;
+const matchesManufacturer = card.getAttribute("data-product-manufacturer") === activeManufacturer;
+
+card.hidden = !matchesCategory || !matchesManufacturer;
+});
+
+manufacturerFilters.forEach((link) => {
+if (link.getAttribute("data-product-filter") === activeManufacturer) {
+link.setAttribute("aria-current", "true");
+} else {
+link.removeAttribute("aria-current");
+}
+});
+
+categoryFilters.forEach((link) => {
+if (link.getAttribute("data-product-category-filter") === activeCategory) {
+link.setAttribute("aria-current", "true");
+} else {
+link.removeAttribute("aria-current");
+}
+});
+
+updateFilterHrefs();
+}
+
+function updateFilterUrl(state) {
+const nextHash = getProductUrl(state.manufacturer, state.category);
+
+if (window.location.hash === nextHash) {
+return;
+}
+
+history.pushState(null, "", nextHash);
+}
+
+manufacturerFilters.forEach((link) => {
+link.addEventListener("click", (event) => {
+event.preventDefault();
+const manufacturer = link.getAttribute("data-product-filter") || productDefaultManufacturer;
+const state = { category: activeCategory, manufacturer };
+render(state);
+updateFilterUrl(state);
+});
+});
+
+categoryFilters.forEach((link) => {
+link.addEventListener("click", (event) => {
+event.preventDefault();
+const category = link.getAttribute("data-product-category-filter") || "";
+const state = { category, manufacturer: activeManufacturer };
+render(state);
+updateFilterUrl(state);
+});
+});
+
+cards.forEach((card) => {
+const selection = card.querySelector("[data-product-select]");
+
+if (!selection) {
+return;
+}
+
+card.addEventListener("click", (event) => {
+if (event.target.closest("a, button, input, label")) {
+return;
+}
+
+selection.checked = !selection.checked;
+updateProducts();
+});
+
+card.addEventListener("keydown", (event) => {
+if (event.key !== " " && event.key !== "Enter") {
+return;
+}
+
+event.preventDefault();
+selection.checked = !selection.checked;
+updateProducts();
+});
+});
+
+productSelections.forEach((selection) => {
+selection.addEventListener("change", updateProducts);
+});
+
+window.addEventListener("hashchange", () => {
+render(getProductStateFromUrl());
+});
+
+window.addEventListener("popstate", () => {
+render(getProductStateFromUrl());
+});
+
+render(getProductStateFromUrl());
+updateProducts();
+})();
+</script>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<div class="layout" data-layout="brussels">
+<div>
+
+<h1>{{ title }}</h1>
+
+{% if lede %}
+{{ lede | markdown | safe }}
+{% endif %}
+
+{% include "partials/faq-all-categories.html" %}
+
+</div>
+</div>
+
+{% endblock %}

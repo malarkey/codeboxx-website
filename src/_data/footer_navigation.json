@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "text": "Home",
+      "url": "/"
+    },
+    {
+      "text": "Why us",
+      "url": "/about/"
+    },
+    {
+      "text": "Where Codeboxx works",
+      "url": "/where-codeboxx-works/"
+    },
+    {
+      "text": "Products",
+      "url": "/products/"
+    },
+    {
+      "text": "Contact",
+      "url": "/contact/"
+    }
+  ]
+}

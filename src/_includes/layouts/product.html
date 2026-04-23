@@ -1,0 +1,44 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<div class="layout" data-layout="rome">
+
+<div>
+{% if img %}
+<img src="{{ img }}" alt="{{ title }}">
+{% endif %}
+
+<h1>{{ title }}</h1>
+
+{% if summary %}
+<p>{{ summary }}</p>
+{% endif %}
+
+{{ content | safe }}
+</div><!-- one -->
+
+<div>
+<h2>Product details</h2>
+
+<dl>
+{% if partNumber %}
+<dt>Part number</dt>
+<dd>{{ partNumber }}</dd>
+{% endif %}
+
+{% if category %}
+<dt>Category</dt>
+<dd>{{ category }}</dd>
+{% endif %}
+
+{% if manufacturer %}
+<dt>Manufacturer</dt>
+<dd>{{ manufacturer }}</dd>
+{% endif %}
+</dl>
+</div><!-- two -->
+
+</div><!-- layout -->
+
+{% endblock %}

@@ -1,0 +1,4 @@
+{
+  "layout": "layouts/product.html",
+  "permalink": "/products/{{ slug or page.fileSlug }}/index.html"
+}

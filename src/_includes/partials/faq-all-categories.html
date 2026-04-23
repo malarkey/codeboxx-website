@@ -1,0 +1,12 @@
+{% set faqListItems = faqItems or collections.faqItems %}
+{% set faqPrefix = faqIdPrefix or "faq" %}
+
+{% for item in faqListItems %}
+{% set faqId = faqPrefix + "-" + item.fileSlug %}
+<details class="item-faq">
+<summary id="{{ faqId }}-question">{{ item.data.question }}</summary>
+<div role="region" aria-labelledby="{{ faqId }}-question">
+{{ item.data.answer | markdown | safe }}
+</div>
+</details>
+{% endfor %}

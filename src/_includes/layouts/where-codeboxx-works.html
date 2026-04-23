@@ -1,0 +1,67 @@
+{% set assetHash = global.random() %}
+
+<!DOCTYPE html>
+<html lang="en-GB">
+
+{% include "partials/head.html" %}
+
+<body id="{{ site.siteID }}">
+
+{% include "partials/header.html" %}
+
+
+<div class="layout" data-layout="zagreb">
+
+<div>
+{% if lede %}{{ lede | markdown | safe }}{% endif %}
+<h1 data-size="3xl">{{ title }}</h1>
+</div><!-- one -->
+
+<div>
+</div><!-- two -->
+
+</div><!-- layout -->
+
+
+
+<div class="layout" data-layout="amsterdam">
+
+<div class="alt-columns">
+{% if block1 %}{{ block1 | markdown | safe }}{% endif %}
+</div><!-- columns -->
+
+</div><!-- layout -->
+
+
+
+<hr>
+
+
+
+<div class="layout" data-layout="rome">
+
+<div>
+{% if block2 %}{{ block2 | markdown | safe }}{% endif %}
+</div><!-- one -->
+
+<div data-bordered="inline-start">
+{% if block3 %}{{ block3 | markdown | safe }}{% endif %}
+{% if block4 %}{{ block4 | markdown | safe }}{% endif %}
+</div><!-- two -->
+
+</div><!-- layout -->
+
+
+
+
+
+
+
+
+
+
+{% include "partials/footer.html" %}
+<script src="{{ site.assetPath }}/js/scripts.js"></script>
+</body>
+
+</html>
