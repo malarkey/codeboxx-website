@@ -1,4 +1,6 @@
 ---
+featureImage: /images/img-about.svg
+featureImageCaption:
 layout: layouts/page.html
 title: Thanks
 permalink: /thanks/

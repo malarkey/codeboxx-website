@@ -265,7 +265,11 @@ a:active,
 a:focus-visible { outline: none; }
 
 a[href*="tel"] {
-font-size: var(--font-size-l); }
+font-size: var(--font-size-l);
+font-weight: var(--font-weight-m); }
+
+a[href*="tel"]:hover {
+text-decoration: none; }
 
 /* ==========================================================================
 TYPOGRAPHY COMPONENTS
@@ -792,7 +796,7 @@ position: relative;
 text-align: center;
 text-decoration: none; }
 
-.footer-nav {
+.footer-nav ul {
 align-items: stretch;
 display: flex;
 flex-wrap: wrap;
@@ -808,16 +812,14 @@ text-align: center; }
 content: "";
 display: none; }
 
-.footer-nav a,
-.footer-nav a:hover,
-.footer-nav a:focus {
+.footer-nav li a,
+.footer-nav li a:hover,
+.footer-nav li a:focus {
 text-decoration: none; }
 
-.footer-nav a,
-.footer-nav a:visited,
-.footer-nav a:hover {
-color: var(--color-text-link);
-font-family: var(--font-family-default);
+.footer-nav li a,
+.footer-nav li a:visited,
+.footer-nav li a:hover {
 font-size: var(--font-size-s);
 text-align: center;
 text-decoration: none; }
@@ -907,11 +909,16 @@ position: absolute;
 right: 1rem;
 top: 1rem; }
 
-.item-product img {
+.product-image {
 display: block;
 inline-size: 300px;
 margin-block-end: var(--spacing-r);
 margin-inline: auto; }
+
+.product-logo {
+display: block;
+block-size: 50px;
+margin-block: 0 var(--spacing-r); }
 
 .item-product svg {
 display: block;
@@ -923,6 +930,10 @@ translate: 0 -40px; }
 
 
 /* ============= BANNER COMPONENT ========== */
+
+.banner-paintings {
+display: block;
+inline-size: 100%; }
 
 .banner-switcher {
 display: flex;
@@ -1120,6 +1131,17 @@ margin: 0;
 text-align: unset; }
 
 [role="contentinfo"] .footer-nav {
+align-items: center;
+display: flex;
+gap: var(--spacing-r); }
+
+[role="contentinfo"] .footer-nav:after {
+border-block-start: var(--border-width-l) solid var(--color-border);
+content: "";
+display: block;
+flex: 1; }
+
+[role="contentinfo"] .footer-nav ul {
 display: unset;
 align-items: unset;
 justify-content: unset; }
@@ -1256,7 +1278,9 @@ grid-template-columns: var(--grid-4-5); }
 [data-layout="vienna"],
 [data-layout="vilnius"] { grid-template-columns: var(--grid-12-col); }
 
+[data-layout="valletta"] { gap: 0 var(--spacing-r); }
 [data-layout="valletta"] > * { grid-column: span 6; }
+
 [data-layout="vienna"] > * { grid-column: span 4; }
 
 [data-layout="vilnius"] > *:nth-child(1) { grid-column: 2 / 7; }

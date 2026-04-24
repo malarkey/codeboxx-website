@@ -29,10 +29,11 @@ function sortProducts(left, right) {
 }
 
 function getProductManufacturers(items) {
+  const excludedManufacturers = new Set(["Armor TTR", "DMseries"]);
   const manufacturers = new Set();
 
   items.forEach((item) => {
-    if (item.data.manufacturer) {
+    if (item.data.manufacturer && !excludedManufacturers.has(item.data.manufacturer)) {
       manufacturers.add(item.data.manufacturer);
     }
   });

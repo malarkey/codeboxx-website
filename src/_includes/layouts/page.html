@@ -6,6 +6,14 @@
 
 <div class="layout" data-layout="tallinn">
 <div>
+{% if featureImage %}
+<figure>
+<img src="{{ featureImage }}" alt="{{ featureImageCaption }}" />
+{% if featureImageCaption %}
+<figcaption>{{ featureImageCaption }}</figcaption>
+{% endif %}
+</figure>
+{% endif %}
 
 {% if displayTitle %}
 <h1>{{ title }}</h1>

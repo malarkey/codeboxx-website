@@ -9,15 +9,6 @@
 
 {% include "partials/header.html" %}
 
-{% if featureImage %}
-<figure>
-<img src="{{ featureImage }}" alt="{{ featureImageCaption }}" />
-{% if featureImageCaption %}
-<figcaption>{{ featureImageCaption }}</figcaption>
-{% endif %}
-</figure>
-{% endif %}
-
 {% block content %}
 
 <h1>{{ title }}</h1>
