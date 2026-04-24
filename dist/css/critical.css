@@ -286,8 +286,7 @@ h3,
 h4 {
 font-family: var(--font-family-default);
 font-style: normal;
-font-variation-settings: "wght" 800, "wdth" 100;
-font-weight: normal;
+font-weight: var(--font-weight-bd);
 line-height: var(--lineheight-s);
 margin-block: 0 var(--spacing-s);
 text-wrap: balance; /* Prevents single words on last line */}
@@ -313,9 +312,6 @@ text-decoration-style: solid;
 text-decoration-thickness: .5px;
 text-underline-offset: .075em; }
 
-/* Accent color for headings */
-:heading .alt-accent { color: var(--color-accent); }
-
 /*
 * PARAGRAPH STYLES
 * Basic paragraph formatting with typographic refinements
@@ -339,8 +335,6 @@ TEXT TREATMENT CLASSES
 * TEXT VARIANT CLASSES
 * Utility classes for specific text treatments
 */
-
-.alt-accent { color: var(--color-accent); } /* Accent color text */
 
 .alt-lede {
 font-family: var(--font-family-default);
@@ -1326,7 +1320,8 @@ html {
 animation-duration: 1ms !important;
 animation-iteration-count: 1 !important;
 scroll-behavior: auto;
-transition-duration: 1ms !important; }}
+transition-duration: 1ms !important; }
+}
 
 @media (prefers-reduced-motion: reduce) {
 *,
