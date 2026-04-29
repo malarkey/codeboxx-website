@@ -1,5 +1,5 @@
 ---
-featureImage: /images/img-contact.svg
+featureImage: /images/img-warhol-marilyn.svg
 featureImageCaption:
 layout: 'layouts/contact.html'
 metaDesc: Contact Codeboxx about thermal printheads, transfer ribbons, TTO printer parts, samples, orders, shipping, and export paperwork.
@@ -12,8 +12,9 @@ lede: |
 aside: |
   ### Contact details
 
-  - Email: info@gekko-coding.com
-  - Phone: +44 (0)1978 761122
+  - Email: orders@codeboxx.co.uk
+  - Phone: +44 01978 547547
+  - WhatsApp: +44 07496 332983
 
   ### Opening hours
 

@@ -3,16 +3,21 @@ const bannerPaintings = document.querySelector("[data-banner-paintings]");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 if (bannerButtons.length && bannerPaintings) {
+const paintingTemplateMap = new Map(
+Array.from(document.querySelectorAll("[data-painting-template]")).map((template) => [
+template.dataset.paintingTemplate,
+template
+])
+);
 const paintingDefinitions = bannerButtons.map((button, index) => ({
 id: button.dataset.paintingTarget,
 salt: index + 1,
-src: button.dataset.paintingSrc
+template: paintingTemplateMap.get(button.dataset.paintingTarget)
 }));
 const paintingDefinitionMap = new Map(
 paintingDefinitions.map((definition) => [definition.id, definition])
 );
 const paintingMap = new Map();
-const paintingRequests = new Map();
 
 const transitionDuration = 2000;
 let activePainting = null;
@@ -39,55 +44,27 @@ return { element, randomValue };
 .sort((left, right) => left.randomValue - right.randomValue)
 .map((entry) => entry.element);
 
-const loadPainting = async (targetId) => {
+const loadPainting = (targetId) => {
 const cachedPainting = paintingMap.get(targetId);
 
 if (cachedPainting) {
 return cachedPainting;
 }
 
-if (paintingRequests.has(targetId)) {
-return paintingRequests.get(targetId);
-}
-
 const definition = paintingDefinitionMap.get(targetId);
+const group = definition?.template?.content?.querySelector("g")?.cloneNode(true);
 
-if (!definition || !definition.src) {
+if (!group) {
 return null;
 }
 
-const request = fetch(definition.src)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`Unable to load ${definition.src}`);
-    }
+group.id = definition.id;
+group.setAttribute("data-painting", definition.id.replace(/^img-/, ""));
+group.setAttribute("data-painting-current", "false");
+bannerPaintings.append(group);
+paintingMap.set(definition.id, group);
 
-    return response.text();
-  })
-  .then((content) => {
-    const parser = new DOMParser();
-    const documentFragment = parser.parseFromString(content, "image/svg+xml");
-    const group = documentFragment.querySelector("g");
-
-    if (!group) {
-      throw new Error(`No painting group found in ${definition.src}`);
-    }
-
-    group.id = definition.id;
-    group.setAttribute("data-painting", definition.id.replace(/^img-/, ""));
-    group.setAttribute("data-painting-current", "false");
-    bannerPaintings.append(group);
-    paintingMap.set(definition.id, group);
-
-    return group;
-  })
-  .finally(() => {
-    paintingRequests.delete(targetId);
-  });
-
-paintingRequests.set(targetId, request);
-
-return request;
+return group;
 };
 
 const setPaintingVisible = (group, visible) => {
@@ -110,10 +87,6 @@ button.setAttribute("aria-pressed", button.dataset.paintingTarget === targetId ?
 });
 };
 
-const warmPainting = (targetId) => {
-loadPainting(targetId).catch(() => {});
-};
-
 const switchPainting = (targetId) => {
 const definition = paintingDefinitionMap.get(targetId);
 
@@ -121,7 +94,8 @@ if (!definition || transitionTimer) {
 return;
 }
 
-loadPainting(targetId).then((nextPainting) => {
+const nextPainting = loadPainting(targetId);
+
 if (!nextPainting || nextPainting === activePainting) {
 return;
 }
@@ -149,13 +123,13 @@ enteringPainting.dataset.paintingTransition = "true";
 enteringPainting.dataset.paintingCurrent = "true";
 
 leavingElements.forEach((element, index) => {
-element.style.transitionDelay = `${Math.round(index * leavingStep)}ms`;
 element.style.opacity = "0";
+element.style.transitionDelay = `${Math.round(index * leavingStep)}ms`;
 });
 
 enteringElements.forEach((element, index) => {
-element.style.transitionDelay = `${Math.round(index * enteringStep)}ms`;
 element.style.opacity = "1";
+element.style.transitionDelay = `${Math.round(index * enteringStep)}ms`;
 });
 
 transitionTimer = window.setTimeout(() => {
@@ -167,38 +141,18 @@ clearPaintingStyles(enteringPainting);
 activePainting = enteringPainting;
 transitionTimer = null;
 }, transitionDuration + 450);
-}).catch(() => {
-updateButtons(activePainting ? activePainting.id : bannerButtons[0].dataset.paintingTarget);
-});
 };
 
 bannerButtons.forEach((button) => {
 button.addEventListener("click", () => {
 switchPainting(button.dataset.paintingTarget);
 });
-button.addEventListener("focus", () => {
-warmPainting(button.dataset.paintingTarget);
-});
-button.addEventListener("pointerenter", () => {
-warmPainting(button.dataset.paintingTarget);
-});
 });
 
-const preloadPaintings = () => {
-paintingDefinitions.slice(1).forEach((definition) => {
-loadPainting(definition.id).catch(() => {});
-});
-};
+activePainting = loadPainting(paintingDefinitions[0].id);
 
-loadPainting(paintingDefinitions[0].id).then((group) => {
-if (!group || activePainting) {
-return;
-}
-
-activePainting = group;
+if (activePainting) {
 setPaintingVisible(activePainting, true);
 updateButtons(activePainting.id);
-
-window.setTimeout(preloadPaintings, 50);
-}).catch(() => {});
+}
 }

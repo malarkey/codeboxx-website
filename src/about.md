@@ -1,5 +1,5 @@
 ---
-featureImage: /images/img-about.svg
+featureImage: /images/img-vermeer-earring.svg
 featureImageCaption:
 layout: layouts/about.html
 metaDesc: Learn about Codeboxx, a Wrexham supplier of thermal printheads, transfer ribbons, TTO parts, and export support.

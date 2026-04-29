@@ -6,10 +6,10 @@ metaDesc: Codeboxx supplies thermal printheads, thermal transfer ribbons, TTO pr
 title: The art of keeping production lines moving
 
 lede: |
-  <p class="alt-lede">When production depends on reliable coding, delays aren’t an option. Codeboxx supplies the printers, printheads, and ribbons you need—fast—so your packaging lines keep running without interruption or compromise.</p>
+  <p class="alt-lede">When production depends on reliable coding, delays aren’t an option. Codeboxx supplies the highest quality printers, printheads, and ribbons you need—fast—so your production lines keep running without interruption or compromise.</p>
 
 intro: |
-  With direct access to leading manufacturers and same-day dispatch across the UK, Codeboxx helps production teams avoid downtime, solve supply issues quickly, and stay in control when pressure is highest.
+  With direct access to leading manufacturers and same-day dispatch, Codeboxx helps production teams avoid downtime, solve supply issues quickly, and stay in control when pressure is highest.
 
 block1: |
  ### Direct supply, no delays

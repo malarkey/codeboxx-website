@@ -19,24 +19,24 @@ block1: |
 
  When that happens, access becomes the difference between keeping customers satisfied and losing time—and trust. Codeboxx sits further upstream in the supply chain, with direct relationships to leading manufacturers and visibility of product availability before it reaches the wider market.
 
- That position allows dealers to move faster and operate with more confidence. Instead of navigating multiple suppliers or uncertain lead times, they have a single, reliable route to the products their customers depend on.
+ Codeboxx sits further upstream in the supply chain, with direct relationships to leading manufacturers and visibility of product availability before it reaches the wider market. That position allows dealers to move faster and operate with more confidence. Instead of navigating multiple suppliers or uncertain lead times, they have a single, reliable route to the products their customers depend on.
 
  It’s not just about availability. It’s about consistency—knowing that when a customer needs something urgently, you can deliver without hesitation.
 
 block2: |
  ## Built for food production
 
- In food production, coding isn’t optional. Every product must carry clear, accurate information—dates, batch numbers, traceability codes—applied consistently at speed across high-volume lines.
+ In food production, coding isn’t optional. Every product must carry clear, accurate information— use by dates, batch numbers, traceability codes—applied consistently at speed across high-volume production lines.
 
  There’s no margin for error. Poor print quality, ribbon failure, or supply delays can lead to rejected batches, wasted product, and costly downtime. The environment itself adds pressure: heat, motion, and continuous operation all place demands on equipment and materials.
 
- Codeboxx supports food manufacturers by supplying TTO components that perform reliably in these conditions. From flexible films to fast-moving packaging lines, the focus is always on maintaining consistent output without interruption.
+ Codeboxx supports food manufacturers by supplying TTO products that perform reliably in these conditions. From resistant sub-straights to ultra fast-moving packaging lines, the focus is always on maintaining consistent output without interruption.
 
- When issues arise—as they inevitably do—speed matters. Fast access to the right printheads or ribbons can be the difference between a minor disruption and a full production stop.
+ When issues arise—as they inevitably do—speed matters. Fast access to the right printheads or ribbons can be the difference between a minor disruption and a full production stoppage.
 
 block3: |
   ### Supporting medical manufacturing
-  Codeboxx helps medical manufacturers maintain that consistency by supplying trusted components and responding quickly when issues arise. When reliability matters, access to the right products—at the right time—makes a critical difference.
+  Codeboxx helps medical manufacturers maintain that consistency by supplying trusted products and responding quickly when issues arise. When reliability matters, access to the right products—at the right time—makes a critical difference.
 
 block4: |
   ### Reliable supply for pharmaceuticals

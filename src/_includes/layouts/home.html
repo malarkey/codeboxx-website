@@ -14,11 +14,22 @@
 <div>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1605" aria-hidden="true" class="banner-paintings" data-banner-paintings focusable="false"></svg>
 
+<div hidden>
+<template data-painting-template="img-van-gogh-portrait">{% include "partials/symbol-van-gogh-portrait.svg" %}</template>
+<template data-painting-template="img-munch-scream">{% include "partials/symbol-munch-scream.svg" %}</template>
+<template data-painting-template="img-davinci-mona-lisa">{% include "partials/symbol-davinci-mona-lisa.svg" %}</template>
+<template data-painting-template="img-warhol-marilyn">{% include "partials/symbol-warhol-marilyn.svg" %}</template>
+<template data-painting-template="img-vermeer-earring">{% include "partials/symbol-vermeer-earring.svg" %}</template>
+<template data-painting-template="img-van-gogh-starry">{% include "partials/symbol-van-gogh-starry.svg" %}</template>
+</div>
+
 <div class="banner-switcher" aria-label="Painting switcher">
-<button aria-controls="img-van-gogh-portrait" aria-label="Show painting 1" aria-pressed="true" data-painting-src="/images/img-about.svg" data-painting-target="img-van-gogh-portrait" type="button">1</button>
-<button aria-controls="img-munch-scream" aria-label="Show painting 2" aria-pressed="false" data-painting-src="/images/img-various.svg" data-painting-target="img-munch-scream" type="button">2</button>
-<button aria-controls="img-davinci-mona-lisa" aria-label="Show painting 3" aria-pressed="false" data-painting-src="/images/img-index.svg" data-painting-target="img-davinci-mona-lisa" type="button">3</button>
-<button aria-controls="img-van-gogh-contact" aria-label="Show painting 4" aria-pressed="false" data-painting-src="/images/img-contact.svg" data-painting-target="img-van-gogh-contact" type="button">4</button>
+<button aria-controls="img-van-gogh-portrait" aria-label="Show Van Gogh portrait" aria-pressed="true" data-painting-target="img-van-gogh-portrait" type="button">1</button>
+<button aria-controls="img-munch-scream" aria-label="Show The Scream" aria-pressed="false" data-painting-target="img-munch-scream" type="button">2</button>
+<button aria-controls="img-davinci-mona-lisa" aria-label="Show Mona Lisa" aria-pressed="false" data-painting-target="img-davinci-mona-lisa" type="button">3</button>
+<button aria-controls="img-warhol-marilyn" aria-label="Show Marilyn" aria-pressed="false" data-painting-target="img-warhol-marilyn" type="button">4</button>
+<button aria-controls="img-vermeer-earring" aria-label="Show Girl with a Pearl Earring" aria-pressed="false" data-painting-target="img-vermeer-earring" type="button">5</button>
+<button aria-controls="img-van-gogh-starry" aria-label="Show Starry Night" aria-pressed="false" data-painting-target="img-van-gogh-starry" type="button">6</button>
 </div><!-- banner-switcher -->
 
 </div><!-- one -->
@@ -60,11 +71,11 @@
 </div><!-- one -->
 
 <div data-bordered="inline-start">
-{% if block2 %}{{ block1 | markdown | safe }}{% endif %}
+{% if block2 %}{{ block2 | markdown | safe }}{% endif %}
 </div><!-- two -->
 
 <div data-bordered="inline-start">
-{% if block3 %}{{ block1 | markdown | safe }}{% endif %}
+{% if block3 %}{{ block3 | markdown | safe }}{% endif %}
 </div><!-- three -->
 
 </div><!-- layout -->
