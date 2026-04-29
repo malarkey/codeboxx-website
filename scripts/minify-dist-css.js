@@ -40,7 +40,13 @@ function minifyFile(filePath) {
     sourceMap: false
   });
 
-  fs.writeFileSync(filePath, result.code);
+  const minifiedCss = result.code.toString();
+  const repairedCss = minifiedCss.replace(
+    /animation:([^;{}]+?)\s+view\(\)/g,
+    "animation:$1;animation-timeline:view()"
+  );
+
+  fs.writeFileSync(filePath, repairedCss);
 }
 
 const cssFiles = getCssFiles(distDir);
