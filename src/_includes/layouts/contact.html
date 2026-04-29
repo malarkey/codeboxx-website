@@ -87,12 +87,9 @@
 </div><!-- one -->
 
 <div>
-{% if site.telephone %}
-<p><a href="tel:{{ site.telephoneHref or site.telephone }}">{{ site.telephone }}</a></p>
-{% endif %}
-{% if site.email %}
-<p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
-{% endif %}
+{% if site.email %}<p>Email: <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>{% endif %}
+{% if site.telephone %}<p>Phone: <a href="tel:{{ site.telephoneHref or site.telephone }}">{{ site.telephone }}</a></p>{% endif %}
+{% if site.whatsapp %}<p>Message: <a href="https://wa.me/{{ site.whatsapp }}">WhatsApp</a></p>{% endif %}
 </div><!-- two -->
 
 </div><!-- layout -->

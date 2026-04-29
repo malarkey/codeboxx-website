@@ -264,10 +264,6 @@ a:hover { text-decoration-color: var(--color-text-link-decoration); }
 a:active,
 a:focus-visible { outline: none; }
 
-a[href*="tel"] {
-font-size: var(--font-size-l);
-font-weight: var(--font-weight-m); }
-
 a[href*="tel"]:hover {
 text-decoration: none; }
 

@@ -1,3 +1,5 @@
+const siteContent = require("./site-content.json");
+
 function normalizeUrl(value) {
   return String(value || "").trim().replace(/\/+$/, "");
 }
@@ -12,26 +14,35 @@ function normalizeAssetPath(value) {
   return normalized.startsWith("/") ? normalized : `/${normalized}`;
 }
 
+function normalizeTelephoneHref(value) {
+  return String(value || "").replace(/[^\d+]/g, "");
+}
+
 module.exports = function() {
+  const siteName = siteContent.name || "Codeboxx";
+  const siteUrl = normalizeUrl(siteContent.url);
+  const telephone = siteContent.telephone || "";
+
   return {
-    name: "Codeboxx",
-    url: "",
-    absoluteUrl: "",
+    name: siteName,
+    url: siteUrl,
+    absoluteUrl: siteUrl,
     assetPath: normalizeAssetPath(process.env.ASSET_PATH),
-    address1: "Unit 4, Riverside Business Park",
-    address2: "",
-    townCity: "Cefn-y-bedd",
-    countyState: "Wrexham",
-    postcode: "LL12 9YG",
-    country: "Cymru/Wales",
-    copyrightOwner: "Codeboxx",
-    email: "info@gekko-coding.com",
+    address1: siteContent.address1 || "",
+    address2: siteContent.address2 || "",
+    townCity: siteContent.townCity || "",
+    countyState: siteContent.countyState || "",
+    postcode: siteContent.postcode || "",
+    country: siteContent.country || "",
+    copyrightOwner: siteContent.copyrightOwner || siteName,
+    email: siteContent.email || "",
     siteID: "Codeboxx",
     socialImage: "/images/codeboxx-supplies.svg",
-    authorName: "Codeboxx",
-    authorEmail: "info@gekko-coding.com",
-    authortelephone: "+44 (0)1978 761122",
-    telephone: "+44 (0)1978 761122",
-    telephoneHref: "+441978761122",
+    authorName: siteName,
+    authorEmail: siteContent.email || "",
+    authortelephone: telephone,
+    telephone: telephone,
+    telephoneHref: normalizeTelephoneHref(telephone),
+    whatsapp: siteContent.whatsapp || "",
   };
 };
