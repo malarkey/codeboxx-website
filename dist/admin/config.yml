@@ -340,6 +340,12 @@ collections:
       - label: Manufacturer
         name: manufacturer
         widget: string
+      - label: Order
+        name: order
+        widget: number
+        value_type: int
+        min: 1
+        required: false
       - label: Body
         name: body
         widget: markdown

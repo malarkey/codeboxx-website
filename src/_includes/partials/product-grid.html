@@ -1,8 +1,8 @@
 {% for item in productListItems %}
-<article class="item-list-product" data-product-card data-product-category="{{ item.data.category | slug }}" data-product-manufacturer="{{ item.data.manufacturer | slug }}"{% if item.data.partNumber %} aria-checked="false" data-product-selected="false" role="checkbox" tabindex="0"{% endif %}{% if productDefaultManufacturer and item.data.manufacturer != productDefaultManufacturer %} hidden{% endif %}>
+<article class="item-product" data-product-card data-product-category="{{ item.data.category | slug }}" data-product-manufacturer="{{ item.data.manufacturer | slug }}"{% if item.data.partNumber %} aria-checked="false" data-product-selected="false" role="checkbox" tabindex="0"{% endif %}{% if productDefaultManufacturer and item.data.manufacturer != productDefaultManufacturer %} hidden{% endif %}>
 
-<div>
-{% if item.data.img %}<img alt="{{ item.data.title }}" class="product-image" loading="lazy" src="{{ item.data.img }}">
+{% if item.data.img %}
+<img alt="{{ item.data.title }}" class="product-image" loading="lazy" src="{{ item.data.img }}">
 {% else %}
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 665">
 
@@ -36,24 +36,32 @@
 </g>
 </svg>
 {% endif %}
-</div><!-- one -->
 
-<div>
+<!-- {% if item.data.category %}<small>{{ item.data.category }}</small>{% endif %} -->
+
+<!-- {% if item.data.manufacturer == "Domino" %}
+<img alt="Domino" class="product-logo" loading="lazy" src="/images/logo-domino.svg">
+{% elseif item.data.manufacturer == "ICE" %}
+<img alt="ICE" class="product-logo" loading="lazy" src="/images/logo-ice.svg">
+{% elseif item.data.manufacturer == "Markem Imaje" %}
+<img alt="Markem Imaje" class="product-logo" loading="lazy" src="/images/logo-markem.svg">
+{% elseif item.data.manufacturer == "Videojet" %}
+<img alt="Videojet" class="product-logo" loading="lazy" src="/images/logo-videojet.svg">
+{% endif %} -->
+
 <h3 data-size="r">{{ item.data.title }}</h3>
-</div><!-- two -->
 
-<div>
 {% if item.data.partNumber %}<p># {{ item.data.partNumber }}</p>{% endif %}
-</div><!-- three -->
 
-<div>
+<!-- {% if item.data.manufacturer %}<p><b>Manufacturer:</b> {{ item.data.manufacturer }}</p>{% endif %} -->
+
+{% if item.data.summary %}<p>{{ item.data.summary }}</p>{% endif %}
+
 {% if item.data.partNumber %}
 <div class="alt-checkbox product-select">
 <input type="checkbox" name="product-select-{{ item.data.partNumber | slug }}-{{ productView }}-{{ loop.index }}" id="product-select-{{ item.data.partNumber | slug }}-{{ productView }}-{{ loop.index }}" value="{{ item.data.partNumber }}" data-product-select data-product-part-number="{{ item.data.partNumber }}">
 <label for="product-select-{{ item.data.partNumber | slug }}-{{ productView }}-{{ loop.index }}"><span data-visibility="hidden">Add {{ item.data.partNumber }} to enquiry</span></label>
 </div><!-- alt-checkbox -->
 {% endif %}
-</div><!-- four -->
-
 </article>
 {% endfor %}

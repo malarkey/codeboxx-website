@@ -15,7 +15,12 @@
 <div data-layout="flex">
 
 <div>
-<ul class="alt-inline" data-product-nav>
+<ul data-product-nav>
+
+<li>
+<button aria-pressed="true" data-product-view-toggle="grid" data-variant="icon"><svg xmlns="http://www.w3.org/2000/svg" width="21" viewBox="0 0 64 64"><path fill="#fff" fill-rule="evenodd" d="M53.913.348c5.379 0 9.74 4.36 9.74 9.739v43.826c0 5.379-4.361 9.74-9.74 9.74H10.087c-5.379 0-9.74-4.361-9.74-9.74V10.087c0-5.379 4.361-9.74 9.74-9.74zM26.086 44.869v11.826h11.826V44.87zm18.783 0v11.826h9.044a2.783 2.783 0 0 0 2.783-2.782v-9.044zm-37.565 0v9.044a2.783 2.783 0 0 0 2.783 2.783h9.043V44.868zm18.782-18.783v11.826h11.826V26.086zm18.783 0v11.826h11.826V26.086zm-37.565 0v11.826H19.13V26.086zM26.086 7.304V19.13h11.826V7.304zm18.783 0V19.13h11.826v-9.043a2.783 2.783 0 0 0-2.782-2.783zm-34.782 0a2.783 2.783 0 0 0-2.783 2.783v9.043H19.13V7.304z"/></svg><span data-visibility="hidden">Grid view</span></button> &nbsp;
+<button aria-pressed="false" data-product-view-toggle="list" data-variant="icon"><svg xmlns="http://www.w3.org/2000/svg" width="21" viewBox="0 0 64 64"><path fill="#fff" fill-rule="evenodd" d="M63.652 60.174a3.48 3.48 0 0 1-3.478 3.478H36.696a3.478 3.478 0 1 1 0-6.956h23.478a3.48 3.48 0 0 1 3.478 3.478m0-56.348a3.48 3.48 0 0 1-3.478 3.478H36.696a3.478 3.478 0 1 1 0-6.956h23.478a3.48 3.48 0 0 1 3.478 3.478m0 18.783a3.48 3.48 0 0 1-3.478 3.478H36.696a3.478 3.478 0 1 1 0-6.957h23.478a3.48 3.48 0 0 1 3.478 3.479m0 18.782a3.48 3.48 0 0 1-3.478 3.479H36.696a3.478 3.478 0 1 1 0-6.957h23.478a3.48 3.48 0 0 1 3.478 3.478M28.435 6.957v14.87a6.61 6.61 0 0 1-6.609 6.608H6.956a6.61 6.61 0 0 1-6.608-6.609V6.956A6.61 6.61 0 0 1 6.957.349h14.87a6.61 6.61 0 0 1 6.608 6.609m-21.13.347v14.174h14.173V7.304Zm21.13 34.87v14.87a6.61 6.61 0 0 1-6.609 6.608H6.956a6.61 6.61 0 0 1-6.608-6.609v-14.87a6.61 6.61 0 0 1 6.609-6.608h14.87a6.61 6.61 0 0 1 6.608 6.609m-21.13.348v14.174h14.173V42.522Z"/></svg><span data-visibility="hidden">List view</span></button></li>
+
 {% for manufacturer in productManufacturers %}
 {% set manufacturerFilter = manufacturer | slug %}
 <li><a href="#manufacturer/{{ manufacturerFilter }}"{% if manufacturer == productDefaultManufacturer %} aria-current="true"{% endif %} data-product-filter="{{ manufacturerFilter }}">{{ manufacturer }}</a></li>
@@ -24,12 +29,13 @@
 </div><!-- one -->
 
 <div>
-<ul class="alt-inline" data-product-category-nav>
+<ul data-product-category-nav>
 {% for category in productCategories %}
 {% set categoryFilter = category | slug %}
 <li><a href="#category/{{ categoryFilter }}" data-product-category-filter="{{ categoryFilter }}">{{ category }}</a></li>
 {% endfor %}
 </ul>
+
 </div><!-- two -->
 
 </div>
@@ -53,9 +59,18 @@
 </defs>
 </svg>
 
-<div class="layout" data-layout="valletta" id="products" data-products-browser>
-{% include "partials/product-list.html" %}
+<div data-products-browser id="products">
+{% set productView = "grid" %}
+<div class="layout" data-layout="valletta" data-product-view-panel="grid">
+{% include "partials/product-grid.html" %}
 </div><!-- layout -->
+
+{% set productView = "list" %}
+<div data-product-view-panel="list" hidden>
+{% include "partials/product-list.html" %}
+</div>
+
+</div><!-- products-browser -->
 
 </div><!-- one -->
 
@@ -125,14 +140,19 @@ const browser = document.querySelector("[data-products-browser]");
 const categoryFilters = Array.from(document.querySelectorAll("[data-product-category-filter]"));
 const form = document.querySelector(".product-form");
 const manufacturerFilters = Array.from(document.querySelectorAll("[data-product-filter]"));
+const viewPanels = Array.from(document.querySelectorAll("[data-product-view-panel]"));
+const viewToggles = Array.from(document.querySelectorAll("[data-product-view-toggle]"));
 const productDefaultManufacturer = "markem-imaje";
+const productDefaultView = "grid";
+const productViewStorageKey = "codeboxx-product-view";
 
-if (!browser || !manufacturerFilters.length) {
+if (!browser || !manufacturerFilters.length || !viewPanels.length || !viewToggles.length) {
 return;
 }
 
 let activeCategory = "";
 let activeManufacturer = productDefaultManufacturer;
+let activeView = productDefaultView;
 const cards = Array.from(browser.querySelectorAll("[data-product-card]"));
 const categoryIds = categoryFilters
 .map((link) => link.getAttribute("data-product-category-filter"))
@@ -167,10 +187,24 @@ return beforeProductMessage;
 }
 
 function getSelectedPartNumbers() {
-return productSelections
+return Array.from(new Set(productSelections
 .filter((selection) => selection.checked)
 .map((selection) => selection.getAttribute("data-product-part-number"))
-.filter(Boolean);
+.filter(Boolean)));
+}
+
+function syncProductSelections(partNumber, checked) {
+if (!partNumber) {
+return;
+}
+
+productSelections.forEach((selection) => {
+if (selection.getAttribute("data-product-part-number") !== partNumber) {
+return;
+}
+
+selection.checked = checked;
+});
 }
 
 function updateProductFormState() {
@@ -228,6 +262,38 @@ function updateProducts() {
 updateProductSelectionStates();
 updateProductFormState();
 updateProductEnquiry();
+}
+
+function getSavedProductView() {
+try {
+const savedView = window.localStorage.getItem(productViewStorageKey);
+
+if (!savedView) {
+return productDefaultView;
+}
+
+return viewPanels.some((panel) => panel.getAttribute("data-product-view-panel") === savedView) ? savedView : productDefaultView;
+} catch {
+return productDefaultView;
+}
+}
+
+function updateProductView(view) {
+const nextView = viewPanels.some((panel) => panel.getAttribute("data-product-view-panel") === view) ? view : productDefaultView;
+
+activeView = nextView;
+
+viewPanels.forEach((panel) => {
+panel.hidden = panel.getAttribute("data-product-view-panel") !== activeView;
+});
+
+viewToggles.forEach((toggle) => {
+toggle.setAttribute("aria-pressed", toggle.getAttribute("data-product-view-toggle") === activeView ? "true" : "false");
+});
+
+try {
+window.localStorage.setItem(productViewStorageKey, activeView);
+} catch {}
 }
 
 function getProductStateFromUrl() {
@@ -320,6 +386,12 @@ updateFilterUrl(state);
 });
 });
 
+viewToggles.forEach((toggle) => {
+toggle.addEventListener("click", () => {
+updateProductView(toggle.getAttribute("data-product-view-toggle") || productDefaultView);
+});
+});
+
 cards.forEach((card) => {
 const selection = card.querySelector("[data-product-select]");
 
@@ -332,7 +404,7 @@ if (event.target.closest("a, button, input, label")) {
 return;
 }
 
-selection.checked = !selection.checked;
+syncProductSelections(selection.getAttribute("data-product-part-number"), !selection.checked);
 updateProducts();
 });
 
@@ -342,13 +414,16 @@ return;
 }
 
 event.preventDefault();
-selection.checked = !selection.checked;
+syncProductSelections(selection.getAttribute("data-product-part-number"), !selection.checked);
 updateProducts();
 });
 });
 
 productSelections.forEach((selection) => {
-selection.addEventListener("change", updateProducts);
+selection.addEventListener("change", () => {
+syncProductSelections(selection.getAttribute("data-product-part-number"), selection.checked);
+updateProducts();
+});
 });
 
 window.addEventListener("hashchange", () => {
@@ -360,6 +435,7 @@ render(getProductStateFromUrl());
 });
 
 render(getProductStateFromUrl());
+updateProductView(getSavedProductView());
 updateProducts();
 })();
 </script>

@@ -1,11 +1,11 @@
 ---
-title: "Markem Imaje X60 / X65 High Speed 53mm"
+title: "Markem Imaje X-Series 53mm High Energy printhead"
 img: ""
-partNumber: "ENM10104650"
-summary: "Markem Imaje X60 / X65 High Speed 53mm printhead."
+partNumber: "ENM10104648"
+summary: "Markem Imaje X-Series 53mm High Energy printhead."
 category: "Thermal printheads"
 manufacturer: "Markem Imaje"
-order: "9"
+order: "8"
 ---
 
 Replacement thermal printhead listed for Markem Imaje equipment. Contact Codeboxx with your printer model and current part reference to confirm compatibility.

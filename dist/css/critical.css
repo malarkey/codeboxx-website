@@ -707,6 +707,22 @@ gap: var(--spacing-r);
 justify-content: center;
 margin-block: var(--spacing-m) 0; }
 
+button[data-variant="icon"] {
+appearance: none;
+background-color: transparent;
+border: 0;
+color: inherit;
+cursor: pointer;
+font: inherit;
+padding: 0; }
+
+button[data-variant="icon"] svg {
+translate: 0 4px; }
+
+button[data-variant="icon"][aria-pressed="true"] path {
+fill: var(--color-accent); }
+
+
 /* ==========================================================================
 FONT SIZE UTILITIES
 ========================================================================== */
@@ -867,12 +883,54 @@ opacity: 1; }
 
 [data-product-category-nav],
 [data-product-nav] {
+align-items: center;
+display: flex;
+gap: var(--spacing-r);
+list-style-type: none;
+margin: 0;
+padding: 0; }
+
+[data-product-category-nav] li,
+[data-product-nav] li {
 font-size: var(--font-size-s);
-margin-block: var(--spacing-r); }
+margin: 0;
+padding: 0; }
+
+[data-product-category-nav] li:before,
+[data-product-nav] li:before {
+content: "";
+display: none; }
+
+[data-product-view-panel][hidden] {
+display: none !important; }
+
+[data-product-card][hidden] {
+display: none !important; }
 
 [data-product-category-nav] a[aria-current="true"],
 [data-product-nav] a[aria-current="true"] {
 color: var(--color-accent); }
+
+.item-list-product {
+align-items: center;
+border: var(--border-width-r) solid var(--color-border);
+border-radius: var(--border-radius-r);
+cursor: pointer;
+display: grid;
+gap: var(--spacing-s);
+grid-template-columns: 84px 1fr 1fr 50px;
+margin-block-end: var(--spacing-r);
+margin-trim: block;
+position: relative;
+transition: border-color var(--animate-duration-faster) var(--animate-function); }
+
+.item-list-product:focus-visible {
+border-color: var(--color-accent);
+outline: var(--border-width-l) solid var(--color-accent);
+outline-offset: 4px; }
+
+.item-list-product[data-product-selected="true"] {
+border-color: var(--color-accent); }
 
 .item-product {
 border: var(--border-width-r) solid var(--color-border);
