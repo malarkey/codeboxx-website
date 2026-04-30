@@ -9,7 +9,7 @@
 
 {% include "partials/header.html" %}
 
-<div class="layout" data-layout="vilnius">
+<main class="layout" data-layout="vilnius">
 
 <div>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1605" aria-hidden="true" class="banner-paintings" data-banner-paintings focusable="false"></svg>
@@ -23,11 +23,11 @@
 </div>
 
 <div class="banner-switcher">
-<button aria-controls="img-van-gogh-portrait" aria-pressed="true" data-painting-target="img-van-gogh-portrait">1</button>
-<button aria-controls="img-munch-scream" aria-pressed="false" data-painting-target="img-munch-scream">2</button>
-<button aria-controls="img-davinci-mona-lisa" aria-pressed="false" data-painting-target="img-davinci-mona-lisa">3</button>
-<button aria-controls="img-warhol-marilyn" aria-pressed="false" data-painting-target="img-warhol-marilyn">4</button>
-<button aria-controls="img-vermeer-earring" aria-pressed="false" data-painting-target="img-vermeer-earring">5</button>
+<button aria-label="Show Van Gogh portrait" aria-pressed="true" data-painting-target="img-van-gogh-portrait" type="button">1</button>
+<button aria-label="Show The Scream" aria-pressed="false" data-painting-target="img-munch-scream" type="button">2</button>
+<button aria-label="Show Mona Lisa" aria-pressed="false" data-painting-target="img-davinci-mona-lisa" type="button">3</button>
+<button aria-label="Show Marilyn" aria-pressed="false" data-painting-target="img-warhol-marilyn" type="button">4</button>
+<button aria-label="Show Girl with a Pearl Earring" aria-pressed="false" data-painting-target="img-vermeer-earring" type="button">5</button>
 </div><!-- banner-switcher -->
 
 </div><!-- one -->
@@ -46,7 +46,7 @@
 
 </div><!-- two -->
 
-</div><!-- layout -->
+</main><!-- layout -->
 
 
 
@@ -62,7 +62,7 @@
 
 
 
-<div class="layout" data-layout="vienna">
+<aside class="layout" data-layout="vienna">
 
 <div>
 {% if block1 %}{{ block1 | markdown | safe }}{% endif %}
@@ -76,7 +76,7 @@
 {% if block3 %}{{ block3 | markdown | safe }}{% endif %}
 </div><!-- three -->
 
-</div><!-- layout -->
+</aside><!-- layout -->
 
 
 

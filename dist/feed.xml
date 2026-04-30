@@ -3,10 +3,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Codeboxx Blog feed</title>
 	<subtitle>The latest Codeboxx articles about coding and marking supplies.</subtitle>
-	<link href="/feed.xml" rel="self"/>
-	<link href="/"/>
+	<link href="https://codeboxx.co.uk/feed.xml" rel="self"/>
+	<link href="https://codeboxx.co.uk/"/>
 	<updated>2026-02-20T00:00:00Z</updated>
-	<id>/feed.xml</id>
+	<id>https://codeboxx.co.uk</id>
 	<author>
     <name>Codeboxx</name>
     <email>orders@codeboxx.co.uk</email>
@@ -15,9 +15,9 @@
     
     <entry>
       <title>Choosing the right thermal transfer ribbon</title>
-      <link href="/blog/choosing-the-right-thermal-transfer-ribbon/"/>
+      <link href="https://codeboxx.co.uk/blog/choosing-the-right-thermal-transfer-ribbon/"/>
       <updated>2026-02-20T00:00:00Z</updated>
-      <id>/blog/choosing-the-right-thermal-transfer-ribbon/</id>
+      <id>https://codeboxx.co.uk/blog/choosing-the-right-thermal-transfer-ribbon/</id>
       <content type="html"><![CDATA[
         <p>A ribbon enquiry is easier to answer when it starts with the production details. The printer make and model, ribbon size, ink side, substrate, and print speed all matter because the ribbon has to work with the printhead and the surface being marked.</p>
 <p>Wax ribbons are often used for standard label work. Wax/resin grades add durability for smoother or more demanding surfaces. Resin grades are usually reserved for tougher applications where heat, abrasion, chemicals, or handling can damage a less resistant mark.</p>
@@ -29,9 +29,9 @@
     
     <entry>
       <title>Reducing thermal printhead wear</title>
-      <link href="/blog/reducing-thermal-printhead-wear/"/>
+      <link href="https://codeboxx.co.uk/blog/reducing-thermal-printhead-wear/"/>
       <updated>2026-02-13T00:00:00Z</updated>
-      <id>/blog/reducing-thermal-printhead-wear/</id>
+      <id>https://codeboxx.co.uk/blog/reducing-thermal-printhead-wear/</id>
       <content type="html"><![CDATA[
         <p>Printheads are consumable parts, but avoidable wear still costs time and money. The wrong ribbon, too much heat, contamination, poor pressure settings, and inconsistent cleaning can all shorten a head's working life.</p>
 <p>Start with the basics: use the right ribbon for the substrate, clean the printhead with suitable wipes or swabs, and avoid increasing heat settings to compensate for a ribbon that is not suited to the application.</p>
@@ -43,9 +43,9 @@
     
     <entry>
       <title>Preparing coding supply export orders</title>
-      <link href="/blog/preparing-coding-supply-export-orders/"/>
+      <link href="https://codeboxx.co.uk/blog/preparing-coding-supply-export-orders/"/>
       <updated>2026-02-06T00:00:00Z</updated>
-      <id>/blog/preparing-coding-supply-export-orders/</id>
+      <id>https://codeboxx.co.uk/blog/preparing-coding-supply-export-orders/</id>
       <content type="html"><![CDATA[
         <p>International orders move more smoothly when the commercial and shipping details are clear before dispatch. Product references, quantities, invoice and delivery addresses, carrier preference, and required paperwork should all be confirmed early.</p>
 <p>Some shipments need certificates of origin, certificates of conformance, signed customs invoices, ATR documents, or EUR1 certificates. If you need documents prepared, say so when you request the quotation rather than after the order is packed.</p>

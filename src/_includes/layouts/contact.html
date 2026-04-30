@@ -9,7 +9,7 @@
 
 {% include "partials/header.html" %}
 
-<div class="layout" data-layout="tirana">
+<main class="layout" data-layout="tirana">
 
 <div>
 <h1>{{ title }}</h1>
@@ -62,7 +62,7 @@
 {% endif %}
 </div><!-- two -->
 
-</div><!-- layout -->
+</main><!-- layout -->
 
 
 
@@ -70,7 +70,7 @@
 
 
 
-<div class="layout" data-layout="tirana">
+<aside class="layout" data-layout="tirana">
 
 <div>
 <p>{% if site.name %}{{ site.name }}<br>{% endif %}
@@ -92,7 +92,7 @@
 {% if site.whatsapp %}<p>Message: <a href="https://wa.me/{{ site.whatsapp }}">WhatsApp</a></p>{% endif %}
 </div><!-- two -->
 
-</div><!-- layout -->
+</aside><!-- layout -->
 
 
 {% include "partials/footer.html" %}
