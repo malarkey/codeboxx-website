@@ -20,9 +20,20 @@ function minifyHtmlOutput(content, outputPath) {
 
 function sortProducts(left, right) {
   const categoryCompare = (left.data.category || "").localeCompare(right.data.category || "");
+  const leftOrder = Number.parseInt(left.data.order, 10);
+  const rightOrder = Number.parseInt(right.data.order, 10);
 
   if (categoryCompare !== 0) {
     return categoryCompare;
+  }
+
+  if (!Number.isNaN(leftOrder) || !Number.isNaN(rightOrder)) {
+    const normalizedLeftOrder = Number.isNaN(leftOrder) ? Number.POSITIVE_INFINITY : leftOrder;
+    const normalizedRightOrder = Number.isNaN(rightOrder) ? Number.POSITIVE_INFINITY : rightOrder;
+
+    if (normalizedLeftOrder !== normalizedRightOrder) {
+      return normalizedLeftOrder - normalizedRightOrder;
+    }
   }
 
   return (left.data.title || "").localeCompare(right.data.title || "");
