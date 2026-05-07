@@ -17,9 +17,7 @@ block1: |
 
  Codeboxx works with dealers and partners across Europe, Asia, and the USA, helping them source reliable TTO printers, printheads, and ribbons without delay. In many markets, local supply can be inconsistent, fragmented, or slow to respond when demand spikes.
 
- When that happens, access becomes the difference between keeping customers satisfied and losing time—and trust. Codeboxx sits further upstream in the supply chain, with direct relationships to leading manufacturers and visibility of product availability before it reaches the wider market.
-
- Codeboxx sits further upstream in the supply chain, with direct relationships to leading manufacturers and visibility of product availability before it reaches the wider market. That position allows dealers to move faster and operate with more confidence. Instead of navigating multiple suppliers or uncertain lead times, they have a single, reliable route to the products their customers depend on.
+ When that happens, access becomes the difference between keeping customers satisfied and losing time—and trust. Codeboxx sits further upstream in the supply chain, with direct relationships to leading manufacturers and visibility of product availability before it reaches the wider market. That position allows dealers to move faster and operate with more confidence. Instead of navigating multiple suppliers or uncertain lead times, they have a single, reliable route to the products their customers depend on.
 
  It’s not just about availability. It’s about consistency—knowing that when a customer needs something urgently, you can deliver without hesitation.
 
