@@ -9,7 +9,7 @@ permalink: /privacy/
 
 <h2 id="summary">Summary</h2>
 
-<p>We respect your privacy and this policy explains how we collect and treat any information you give me. You won&rsquo;t find any complicated legal terms or long passages of unreadable text. We&rsquo;ve no desire to trick you into agreeing to something you might later regret.</p>
+<p>We respect your privacy and this policy explains how we collect and treat any information you give us. You won&rsquo;t find any complicated legal terms or long passages of unreadable text. We&rsquo;ve no desire to trick you into agreeing to something you might later regret.</p>
 
 <h3>Our policy covers</h3>
 
@@ -28,23 +28,23 @@ permalink: /privacy/
 
 <h3 id="why-we-value-your-privacy">Why we value your privacy</h3>
 
-<p>We value your privacy as much as we do our own, so we&rsquo;re committed to keeping your personal and business information safe. we ask for only the bare minimum from my clients. we&rsquo;ll never use your personal information for any reason other than why you gave it, and we&rsquo;ll never give anyone access to it unless we&rsquo;m forced to by law.</p>
+<p>We value your privacy as much as we do our own, so we&rsquo;re committed to keeping your personal and business information safe. We ask for only the bare minimum from our customers. We&rsquo;ll never use your personal information for any reason other than why you gave it, and we&rsquo;ll never give anyone access to it unless we&rsquo;re forced to by law.</p>
 
 <h3 id="how-we-collect-information">How we collect information</h3>
 
-<p>We ask for contact information including your name, email address, and phone number, on my website so that we can reply to your inquiry.</p>
+<p>We ask for contact information including your name, email address, and phone number, on our website so that we can reply to your enquiry.</p>
 
-<p>We don&rsquo;t use cookies or scripts which are designed to track the websites you visit. we don&rsquo;t use analytics or native social media &lsquo;like&rsquo; or &lsquo;sharing&rsquo; buttons which also build profiles of your internet activity.</p>
+<p>We don&rsquo;t use cookies or scripts which are designed to track the websites you visit. We don&rsquo;t use analytics or native social media &lsquo;like&rsquo; or &lsquo;sharing&rsquo; buttons which also build profiles of your internet activity.</p>
 
-<p>Occasionally, we might receive your contact information from one of my partners. If we do, we protect it in exactly the same way as if you give it to us directly.</p>
+<p>Occasionally, we might receive your contact information from one of our partners. If we do, we protect it in exactly the same way as if you give it to us directly.</p>
 
 <h3 id="what-information-we-store">What information we store</h3>
 
-<p>When you contact us by email or through our website, we store your name and email address, if you&rsquo;ve given them to me.</p>
+<p>When you contact us by email or through our website, we store your name and email address, if you&rsquo;ve given them to us.</p>
 
 <h3 id="how-we-me-your-information">How we use your information</h3>
 
-<p>We occasionally use your contact information to send you details of my services. When we do, you have the option to unsubscribe from these communications and we won&rsquo;t send them to you again.</p>
+<p>We occasionally use your contact information to send you details of our services. When we do, you have the option to unsubscribe from these communications and we won&rsquo;t send them to you again.</p>
 
 <h3 id="who-is-responsible-for-your-information-at-our-company">Who&rsquo;s responsible for your information</h3>
 
@@ -52,11 +52,11 @@ permalink: /privacy/
 
 <h3 id="who-has-access-to-information-about-you">Who has access to information about you</h3>
 
-<p>When we store information in my own systems, only the people who need it have access. Our team has access to everything you&rsquo;ve provided, but individuals have access to only what they need to do their job.</p>
+<p>When we store information in our own systems, only the people who need it have access. Our team has access to everything you&rsquo;ve provided, but individuals have access to only what they need to do their job.</p>
 
 <h3 id="steps-we-take-to-keep-your-information-private">Steps we take to keep your information private</h3>
 
-<p>Where we store your information in third-party services, we restrict access only to people who need it. we store passwords in an encrypted password manager, use a different, randomly generated password for each service, and never use the same password twice. The computers we use are all encrypted and protected by a passcode or fingerprint access. These computers ask for authentication whenever they&rsquo;re started or periods of inactivity. Our mobile devices are also protected by a fingerprint or facial recognition.</p>
+<p>Where we store your information in third-party services, we restrict access only to people who need it. We store passwords in an encrypted password manager, use a different, randomly generated password for each service, and never use the same password twice. The computers we use are all encrypted and protected by a passcode or fingerprint access. These computers ask for authentication whenever they&rsquo;re started or periods of inactivity. Our mobile devices are also protected by a fingerprint or facial recognition.</p>
 
 <h3 id="how-to-complain">How to complain</h3>
 
@@ -64,7 +64,7 @@ permalink: /privacy/
 
 <h3 id="changes-to-the-policy">Changes to the policy</h3>
 
-<p>Wef we change the contents of this policy, those changes will become effective the moment we publish them on my website.</p>
+<p>If we change the contents of this policy, those changes will become effective the moment we publish them on our website.</p>
 
 <hr>
 
