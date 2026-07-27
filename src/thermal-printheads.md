@@ -112,8 +112,7 @@ sectionEightContent: |
 
  Our team can identify the right thermal printhead, answer technical questions, and arrange fast delivery to help minimise downtime.
 
- [Request a quote today](/contact/) and keep production moving.
+ [Request a quote today](/contact/?referrer={{ helpers.getContactReferrer(page) }}&placement=page-end) and keep production moving.
 
 
 ---
-

@@ -1,4 +1,5 @@
 {% set assetHash = global.random() %}
+{% set contactReferrer = helpers.getContactReferrer(page) %}
 
 <!DOCTYPE html>
 <html lang="en-GB">
@@ -40,7 +41,7 @@
 {% if intro %}{{ intro | markdown | safe }}{% endif %}
 
 <div class="btn-group">
-<a href="/contact" class="btn" data-variant="alt">Get in touch</a>
+<a href="/contact/?referrer={{ contactReferrer }}&placement=hero" class="btn" data-variant="alt">Get in touch</a>
 <a href="/about" class="btn">Why us?</a>
 </div><!-- btn-group -->
 

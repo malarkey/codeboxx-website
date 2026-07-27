@@ -130,6 +130,7 @@ window.location.replace(`/admin/${hash}`);
 
 <header role="banner">
 
+
 <div class="layout" data-layout="warsaw">
 
 <div id="banner-logo">
@@ -161,13 +162,21 @@ window.location.replace(`/admin/${hash}`);
 <nav>
 <ul>
 
+
 <li><a href="/about/" >Why us</a></li>
+
+
 
 <li><a href="/where-codeboxx-works/" >Where Codeboxx works</a></li>
 
+
+
 <li><a href="/products/" >Products</a></li>
 
-<li><a href="/contact/"  aria-current="page" data-state="active">Contact</a></li>
+
+
+<li><a href="/contact/?referrer=contact&placement=nav"  aria-current="page" data-state="active">Contact</a></li>
+
 
 </ul>
 </nav>
@@ -175,6 +184,7 @@ window.location.replace(`/admin/${hash}`);
 </div><!-- layout -->
 
 </header>
+
 
 <main class="layout" data-layout="tirana">
 
@@ -185,6 +195,8 @@ window.location.replace(`/admin/${hash}`);
 
 <form action="/thanks/" class="contact-form" data-netlify="true" method="POST" name="contact-form" netlify-honeypot="bot-field">
 <input type="hidden" name="form-name" value="contact-form">
+<input type="hidden" name="referrer" id="contact-referrer">
+<input type="hidden" name="placement" id="contact-placement">
 <p hidden><label>Don&#8217;t fill this out: <input name="bot-field"></label></p>
 
 <div>
@@ -263,6 +275,7 @@ Cymru/Wales</p>
 
 <footer role="contentinfo">
 
+
 <div class="layout" data-layout="athens">
 
 <div>
@@ -270,17 +283,29 @@ Cymru/Wales</p>
 <div class="footer-nav">
 <ul>
 
+
 <li><a href="/">Home</a></li>
+
+
 
 <li><a href="/about/">Why us</a></li>
 
+
+
 <li><a href="/where-codeboxx-works/">Where Codeboxx works</a></li>
+
+
 
 <li><a href="/privacy/">Privacy</a></li>
 
+
+
 <li><a href="/products/">Products</a></li>
 
-<li><a href="/contact/" aria-current="page" data-state="active">Contact</a></li>
+
+
+<li><a href="/contact/?referrer=contact&placement=footer" aria-current="page" data-state="active">Contact</a></li>
+
 
 </ul>
 </div>

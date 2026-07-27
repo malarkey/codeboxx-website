@@ -1,4 +1,5 @@
 {% set assetHash = global.random() %}
+{% set contactReferrer = helpers.getContactReferrer(page) %}
 
 <!DOCTYPE html>
 <html lang="en-GB">
@@ -27,7 +28,7 @@
 <h1 data-size="2xl">{{ sectionOneTitle }}</h1>
 {{ sectionOneContent | markdown | safe }}
 
-<div class="btn-group"><a href="/contact" class="btn">Get a quote</a></div>
+<div class="btn-group"><a href="/contact/?referrer={{ contactReferrer }}&placement=hero" class="btn">Get a quote</a></div>
 
 </div><!-- one -->
 
@@ -43,7 +44,7 @@
 <div>
 <h2>{{ sectionTwoHeadline }}</h2>
 {{ sectionTwoContent | markdown | safe }}
-<div class="btn-group" style="justify-content:start;"><a href="/contact" class="btn">Get a quote</a></div>
+<div class="btn-group" style="justify-content:start;"><a href="/contact/?referrer={{ contactReferrer }}&placement=section-two" class="btn">Get a quote</a></div>
 </div><!-- one -->
 
 <div data-bordered="inline-start">
@@ -117,7 +118,7 @@
 <div>
 <h2>{{ sectionFiveHeadline }}</h2>
 {{ sectionFiveContent | markdown | safe }}
-<div class="btn-group" style="justify-content:start;"><a href="/contact" class="btn">Get a quote</a></div>
+<div class="btn-group" style="justify-content:start;"><a href="/contact/?referrer={{ contactReferrer }}&placement=section-five" class="btn">Get a quote</a></div>
 </div><!-- one -->
 
 <div data-bordered="inline-start">
@@ -138,7 +139,7 @@
 <div>
 <h2>{{ sectionSevenHeadline }}</h2>
 {{ sectionSevenContent | markdown | safe }}
-<div class="btn-group" style="justify-content:start;"><a href="/contact" class="btn">Get a quote</a></div>
+<div class="btn-group" style="justify-content:start;"><a href="/contact/?referrer={{ contactReferrer }}&placement=section-seven" class="btn">Get a quote</a></div>
 </div><!-- one -->
 
 <div data-bordered="inline-start">

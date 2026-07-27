@@ -21,6 +21,26 @@ module.exports = {
     return response;
   },
   /**
+   * Returns a page-aware contact referrer value.
+   *
+   * @param {Object} page The 11ty page context
+   * @returns {String} The referrer value
+   */
+  getContactReferrer(page) {
+    const pageUrl = page && page.url ? page.url : '';
+    let referrer = 'unknown';
+
+    if (pageUrl === '/') {
+      referrer = 'home';
+    } else if (page && page.fileSlug) {
+      referrer = page.fileSlug;
+    } else if (pageUrl) {
+      referrer = pageUrl.replace(/^\/|\/$/g, '').split('/').pop() || 'home';
+    }
+
+    return referrer;
+  },
+  /**
    * Filters out the passed item from the passed collection
    * and randomises and limits them based on flags
    *
@@ -71,5 +91,3 @@ module.exports = {
     return collection.filter(x => keys.includes(x.data.key));
   }
 };
-
-

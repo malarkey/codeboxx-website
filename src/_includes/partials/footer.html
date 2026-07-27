@@ -1,4 +1,5 @@
 <footer role="contentinfo">
+{% set contactReferrer = helpers.getContactReferrer(page) %}
 
 <div class="layout" data-layout="athens">
 
@@ -7,7 +8,11 @@
 <div class="footer-nav">
 <ul>
 {% for item in footer_navigation.items %}
+{% if item.url == "/contact" or item.url == "/contact/" %}
+<li><a href="/contact/?referrer={{ contactReferrer }}&placement=footer"{{ helpers.getLinkActiveState(item.url, page.url) | safe }}>{{ item.text }}</a></li>
+{% else %}
 <li><a href="{{ item.url }}"{{ helpers.getLinkActiveState(item.url, page.url) | safe }}>{{ item.text }}</a></li>
+{% endif %}
 {% endfor %}
 </ul>
 </div>
