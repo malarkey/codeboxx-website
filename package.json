@@ -8,6 +8,7 @@
     "build": "ELEVENTY_ENV=production npx @11ty/eleventy",
     "postbuild": "node scripts/minify-dist-css.js",
     "add:blog": "node scripts/add-feature.js blog",
+    "add:case-studies": "node scripts/add-feature.js case-studies",
     "add:changelog": "node scripts/add-feature.js changelog",
     "add:faqs": "node scripts/add-feature.js faqs",
     "add:portfolio": "node scripts/add-feature.js portfolio",

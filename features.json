@@ -3,5 +3,6 @@
   "changelog": false,
   "faqs": true,
   "portfolio": false,
-  "team": false
+  "team": false,
+  "caseStudies": true
 }

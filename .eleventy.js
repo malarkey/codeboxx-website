@@ -98,6 +98,11 @@ module.exports = function(eleventyConfig) {
     blogPlugin(eleventyConfig);
   }
 
+  if (features.caseStudies) {
+    const caseStudiesPlugin = require("./feature-packs/case-studies/plugin.js");
+    caseStudiesPlugin(eleventyConfig);
+  }
+
   if (features.changelog) {
     const changelogPlugin = require("./feature-packs/changelog/plugin.js");
     changelogPlugin(eleventyConfig);

@@ -1,0 +1,146 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+<div class="layout" data-layout="athens">
+
+<div>
+
+{% if image %}
+<figure>
+<img src="{{ image }}" alt="{{ title }}">
+<figcaption>
+{% if clientLogo %}<img src="{{ clientLogo }}" alt="{{ clientName or title }}" data-variant="logo">{% endif %}
+{% if projectUrl %}<a href="{{ projectUrl }}">{% endif %}{{ clientName }}{% if projectUrl %}</a>{% endif %}
+{% if year %}• {{ year }}{% endif %}
+{% if featured %}• Featured{% endif %}
+</figcaption>
+</figure>
+{% endif %}
+
+<h1>{{ title }}</h1>
+
+{% if lede %}<p class="alt-lede">{{ lede }}</p>{% endif %}
+
+<div class="alt-columns">
+{{ content | safe }}
+</div><!-- columns -->
+
+<hr>
+
+<div class="layout" data-layout="vienna">
+{% set factoidOneItem = factoidOne[0] or factoidOne %}
+{% set factoidTwoItem = factoidTwo[0] or factoidTwo %}
+{% set factoidThreeItem = factoidThree[0] or factoidThree %}
+{% set factoidFourItem = factoidFour[0] or factoidFour %}
+{% set factoidFiveItem = factoidFive[0] or factoidFive %}
+{% set factoidSixItem = factoidSix[0] or factoidSix %}
+
+{% if factoidOneItem %}
+<div data-align-h="center">
+{% if factoidOneItem.icon %}<img src="{{ factoidOneItem.icon }}" alt="" style="inline-size:64px;">{% endif %}
+{% if factoidOneItem.numeral %}<h3 data-size="xl">{{ factoidOneItem.numeral }}</h3>{% endif %}
+<p>{{ factoidOneItem.text }}</p>
+</div>
+{% endif %}
+
+{% if factoidTwoItem %}
+<div data-align-h="center">
+{% if factoidTwoItem.icon %}<img src="{{ factoidTwoItem.icon }}" alt="" style="inline-size:64px;">{% endif %}
+{% if factoidTwoItem.numeral %}<h3 data-size="xl">{{ factoidTwoItem.numeral }}</h3>{% endif %}
+<p>{{ factoidTwoItem.text }}</p>
+</div>
+{% endif %}
+
+{% if factoidThreeItem %}
+<div data-align-h="center">
+{% if factoidThreeItem.icon %}<img src="{{ factoidThreeItem.icon }}" alt="" style="inline-size:64px;">{% endif %}
+{% if factoidThreeItem.numeral %}<h3 data-size="xl">{{ factoidThreeItem.numeral }}</h3>{% endif %}
+<p>{{ factoidThreeItem.text }}</p>
+</div>
+{% endif %}
+
+{% if factoidFourItem %}
+<div data-align-h="center">
+{% if factoidFourItem.icon %}<img src="{{ factoidFourItem.icon }}" alt="" style="inline-size:64px;">{% endif %}
+{% if factoidFourItem.numeral %}<h3 data-size="xl">{{ factoidFourItem.numeral }}</h3>{% endif %}
+<p>{{ factoidFourItem.text }}</p>
+</div>
+{% endif %}
+
+{% if factoidFiveItem %}
+<div data-align-h="center">
+{% if factoidFiveItem.icon %}<img src="{{ factoidFiveItem.icon }}" alt="" style="inline-size:64px;">{% endif %}
+{% if factoidFiveItem.numeral %}<h3 data-size="xl">{{ factoidFiveItem.numeral }}</h3>{% endif %}
+<p>{{ factoidFiveItem.text }}</p>
+</div>
+{% endif %}
+
+{% if factoidSixItem %}
+<div data-align-h="center">
+{% if factoidSixItem.icon %}<img src="{{ factoidSixItem.icon }}" alt="" style="inline-size:64px;">{% endif %}
+{% if factoidSixItem.numeral %}<h3 data-size="xl">{{ factoidSixItem.numeral }}</h3>{% endif %}
+<p>{{ factoidSixItem.text }}</p>
+</div>
+{% endif %}
+
+</div><!-- layout -->
+
+
+
+{% if quotation %}
+<blockquote data-variant="m">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 66 48"><path fill="#000" d="M35.538 45V18.161a3 3 0 0 1 .721-1.95L49.237 1.048A3 3 0 0 1 51.516 0h8.223a3 3 0 0 1 2.339 4.88l-6.371 7.925a3 3 0 0 0 2.338 4.88H63a3 3 0 0 1 3 3V45a3 3 0 0 1-3 3H38.538a3 3 0 0 1-3-3M0 45V18.161a3 3 0 0 1 .72-1.95L13.699 1.048A3 3 0 0 1 15.978 0H24.2a3 3 0 0 1 2.338 4.88l-6.37 7.925a3 3 0 0 0 2.338 4.88h4.955a3 3 0 0 1 3 3V45a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3"/></svg>
+<p>{{ quotation }}</p>
+</blockquote>
+{% endif %}
+
+
+
+<div data-align-h="center">
+<hr>
+<h2>Interested in something similar?</h2>
+<p>Codeboxx isn’t just a supplier. We’re a partner focused on keeping your production line running—consistently, reliably, and without interruption.</p>
+
+<div class="btn-group">
+<a href="/contact/?referrer={{ contactReferrer }}&placement=body" class="btn">Get in touch</a>
+</div><!-- btn-group -->
+<hr data-visibility="large">
+</div>
+
+
+
+</div><!-- one -->
+
+
+
+<div>
+
+{% if categories and categories.length %}
+<h3>Categories</h3>
+
+<ul class="alt-">
+{% for category in categories %}
+<li data-size="xs"><a href="/case-studies/category/{{ category | slug }}/">{{ category }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<hr>
+
+<h3>More</h3>
+
+{% set otherCaseStudies = helpers.getSiblingContent(collections.caseStudiesItems, page, 2, false) %}
+{% for item in otherCaseStudies %}
+<article class="item-case-study-list">
+<h3 data-size="r"><a href="{{ item.url }}">{{ item.data.title }}</a></h3>
+{% if item.data.lede %}<p data-size="xs">{{ item.data.lede }}</p>{% endif %}
+</article>
+<hr>
+{% endfor %}
+
+</div><!-- one -->
+
+</div><!-- layout -->
+
+{% endblock %}
