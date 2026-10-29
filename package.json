@@ -25,6 +25,8 @@
   "dependencies": {
     "@11ty/eleventy-plugin-rss": "^1.0.7",
     "js-yaml": "^4.1.0",
+    "jspdf": "^4.2.1",
+    "jspdf-autotable": "^5.0.9",
     "luxon": "^3.6.1",
     "markdown-it": "^14.1.0"
   },

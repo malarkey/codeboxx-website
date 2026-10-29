@@ -90,6 +90,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/admin");
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
+  eleventyConfig.addPassthroughCopy({ "node_modules/jspdf/dist/jspdf.umd.min.js": "js/vendor/jspdf.js" });
+  eleventyConfig.addPassthroughCopy({ "node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.min.js": "js/vendor/jspdf-autotable.js" });
   eleventyConfig.addPassthroughCopy("src/fonts");
   eleventyConfig.addPassthroughCopy("src/images");
 

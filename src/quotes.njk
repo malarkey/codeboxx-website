@@ -1,0 +1,158 @@
+---
+permalink: /quotes/index.html
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en-GB">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<meta name="robots" content="noindex,nofollow">
+<title>Quote builder | Codeboxx</title>
+
+<link rel="stylesheet" href="/css/quotes.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header role="banner">
+<div id="banner-logo" style="max-inline-size: 320px;">
+<a href="/" aria-label="{{ site.name }}" title="Home">{% include "partials/logo-banner.svg" %}<span data-visibility="hidden">{{ site.name }}</span></a>
+</div><!-- banner-logo -->
+
+<h1>Quote builder</h1>
+<p>Save and import JSON files to edit drafts. Download a PDF to send to your customer.</p>
+</header>
+
+<main>
+
+<div class="tools">
+<label>Import JSON quote file
+<input id="load" type="file" accept=".json,application/json"></label>
+<p id="status" role="status"></p>
+</div><!-- tools -->
+
+
+
+<form id="quote">
+
+<h2>Codeboxx quotation</h2>
+
+<div class="details">
+
+<label><span>Customer/company</span>
+<textarea name="customer" rows="1"></textarea>
+</label>
+
+<label><span>Contact details</span>
+<textarea name="contact" rows="1"></textarea>
+</label>
+
+<label><span>Quote reference</span>
+<input type="text" name="reference" required>
+</label>
+
+<label><span>Date</span>
+<input name="date" type="date" required>
+</label>
+
+<label><span>Valid until</span>
+<input name="validUntil" type="date">
+</label>
+
+<label><span>Currency</span>
+<select name="currency"><option>GBP</option><option>EUR</option><option>USD</option></select>
+</label>
+
+</div><!-- details -->
+
+
+<hr data-function="spacer">
+
+<label>Introduction
+<textarea name="intro" rows="2" placeholder="Thank-you for the opportunity to provide a quotation. Our prices are below."></textarea>
+</label>
+
+<hr data-function="spacer">
+
+<div class="table-wrap">
+<table>
+
+<thead>
+<tr>
+<th>Manufacturer / model</th>
+<th>Part number</th>
+<th>Description</th>
+<th>Quantity</th>
+<th>Unit price</th>
+<th>Lead time</th>
+<th>Line total</th>
+<th class="tools">Action</th>
+</tr>
+</thead>
+
+<tbody id="rows"></tbody>
+</table>
+
+<div class="btn-action">
+<button id="add" type="button">+ Add row</button>
+</div><!-- btn-action -->
+
+</div><!-- table-wrap -->
+
+
+
+<div class="totals">
+<label><span>Delivery</span>
+<input type="number" name="delivery" min="0" step="0.01" value="0">
+</label>
+
+<label><span>Discount amount</span>
+<input type="number" name="discount" min="0" step="0.01" value="0">
+</label>
+
+<label><span>VAT rate (%)</span>
+<input type="number" name="vat" min="0" max="100" step="0.01" value="0">
+</label>
+
+<p><b>Subtotal</b> <output id="subtotal"></output></p>
+<p><b>VAT</b> <output id="tax"></output></p>
+<p><b>Total <output id="total"></output></b></p>
+</div><!-- totals -->
+
+<label>Terms
+<textarea name="terms" rows="5">Minimum order value: GBP 250 / EUR 300 / USD 300. Official part numbers should be provided and confirmed by the customer before ordering. Lead times are estimates and may vary. Parts are ordered specifically for customers on request and are not returnable if ordered in error. Dealers: please do not list spare parts on the internet.</textarea>
+</label>
+
+<div class="tools">
+<p>
+<button id="save" type="button">Save quote file (JSON)</button>
+<button id="pdf" type="button">Download customer PDF</button>
+</p>
+</div><!-- tools -->
+
+<p>With best regards</p>
+
+<p><b>Codeboxx</b><br>
+Unit 4, Riverside Business Park<br>
+Cefn-y-bedd<br>
+Wrexham<br>
+LL12 9YG
+Cymru/Wales</p>
+
+<p><b>Email:</b> <a href="mailto:orders@codeboxx.co.uk">orders@codeboxx.co.uk</a><br>
+<b>Phone:</b> +44 (0)1978 547547</p>
+</form>
+
+</main>
+
+<script src="/js/vendor/jspdf.js"></script>
+<script src="/js/vendor/jspdf-autotable.js"></script>
+<script src="/js/quotes.js"></script>
+
+</body>
+</html>
